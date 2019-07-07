@@ -1,1 +1,5 @@
+name: JR IT Consultancy
+title: Cloud migration, my way
+description: I write about IT things that are interesting to me, and that I will surely forget next week
+markdown: kramdown
 theme: jekyll-theme-cayman
