@@ -11,7 +11,7 @@ author: Jack Rudlin
 title: Thoughts on cloud migration and end-user computing architecture
 
 # Short bio or description (displayed in the header)
-description: Stuff I need to write down, before I forget!
+description: Stuff I needed to write down, before I forget!
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: /reverie/images/reverie.png
@@ -23,12 +23,12 @@ avatar: /reverie/images/reverie.png
 # Includes an icon in the footer for each username you enter
 footer-links:
   dribbble:
-  email: jrudlin@gmail.com
+  email:
   facebook:
   flickr:
   github: jrudlin
   instagram:
-  linkedin: https://www.linkedin.com/in/jrudlin
+  linkedin: jrudlin
   pinterest:
   rss: rss
   twitter: JackRudlin
