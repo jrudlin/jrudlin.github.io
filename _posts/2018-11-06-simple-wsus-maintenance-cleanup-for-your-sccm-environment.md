@@ -37,7 +37,6 @@ author:
   last_name: ''
 permalink: "/2018/11/06/simple-wsus-maintenance-cleanup-for-your-sccm-environment/"
 ---
-# Overview
 
 WSUS Cleanup in an SCCM has been done before - many times but I wanted a solution that focussed purely on the built-in WSUS cleanup options and something that was **simple to deploy** in any SCCM environment - using an **SCCM Configuration Item**.
 

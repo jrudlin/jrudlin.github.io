@@ -40,13 +40,8 @@ author:
   last_name: ''
 permalink: "/2019/01/13/simple-sql-maintenance-for-your-sccm-configmgr-environment-powershell-ci/"
 ---
-<!-- wp:paragraph -->
 
 I took this idea from one of my previous posts [https://jritconsultancy.wordpress.com/2018/11/06/simple-wsus-maintenance-cleanup-for-your-sccm-environment/](https://jritconsultancy.wordpress.com/2018/11/06/simple-wsus-maintenance-cleanup-for-your-sccm-environment/) where a PowerShell script can be loaded into an **SCCM Configuration Item** and run automagically across all the SCCM servers using a dynamic collection. Hands off and completely automated.
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
 
 This time round it's the renowned **Ola Hallengren** [SQL maintenance](https://ola.hallengren.com/sql-server-index-and-statistics-maintenance.html) scripts. Ola's scripts have always been recommended by ConfigMgr/SCCM MVPs and partners etc. The re-indexing provides performance gains in the CM database. SQL databases need maintenance as over time, the data/tables/indexes can become fragmented and this leads to poor performance.
 
