@@ -9,3 +9,6 @@ Gemfile.lock
 node_modules
 package.json
 *.gem
+Thumbs.db
+ehthumbs.db
+.vagrant

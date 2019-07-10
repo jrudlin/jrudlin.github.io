@@ -1,97 +1,182 @@
-#
-# This file contains configuration flags to customize your site
-#
+# --- General options --- #
 
-# Name of your site (displayed in the header)
-name: JR IT Consultancy
-
-# Name of the author
-author: Jack Rudlin
-
+# Name of website
 title: Thoughts on cloud migration and end-user computing architecture
 
-# Short bio or description (displayed in the header)
+# Short description of your site
 description: Stuff I have to write down, before I forget!
 
-# URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: /assets/images/JRIT-logo.png
+# --- Local development options ---
+# If your website is hosted locally rather than on GitHub, then you need to uncomment the next two parameters to set the url and baseurl
+# *** If you're not sure what this mean, then leave this section as it is. Only modify the url and baseurl if you know what you're doing!***
 
-#
-# Flags below are optional
-#
+# url is the the website domain URL without a trailing slash
+#url: "https://example.com"
 
-# Includes an icon in the footer for each username you enter
-footer-links:
-  dribbble:
-  email:
-  facebook:
-  flickr:
+# baseurl should be an empty string
+#baseurl: ""
+
+# --- Navigation bar options --- #
+
+# List of links in the navigation bar
+navbar-links:
+  About Me: "about"
+  Resources:
+    - Blue Hills Software: "https://www.bluehills.co.uk"
+    - Learn markdown: "http://www.markdowntutorial.com"
+  Author's home: "https://jrudlin.github.io"
+
+# Image to show in the navigation bar - image must be a square (width = height)
+# Remove this parameter if you don't want an image in the navbar
+avatar: "/assets/images/JRIT-logo.png"
+
+# If you want to have an image logo in the top-left corner instead of the title text,
+# then specify the following parameter
+# title-img: /path/to/image
+
+# --- Background colour/image options --- #
+
+# Personalize the colors in your website. Colour values can be any valid CSS colour
+
+navbar-col: "#F5F5F5"
+navbar-text-col: "#404040"
+navbar-children-col: "#F5F5F5"
+page-col: "#FFFFFF"
+link-col: "#008AFF"
+hover-col: "#0085A1"
+footer-col: "#F5F5F5"
+footer-text-col: "#777777"
+footer-link-col: "#404040"
+
+# Alternatively, the navbar, footer, and page background can be set to use background images
+# instead of colour
+
+# navbar-img: "/img/bgimage.png"
+# footer-img: "/img/bgimage.png"
+# page-img: "/img/bgimage.png"
+
+# --- Footer options --- #
+
+# Change all these values or delete the ones you don't want.
+# Important: you must keep the "name" parameter, everything else you can remove
+author:
+  name: Jack Rudlin
+
+# Select your active Social Network Links.
+# Uncomment the links you want to show in the footer and add your information to each link.
+# You can reorder the items to define the link order.
+# If you want to add a new link that isn't here, you'll need to also edit the file _data/SocialNetworks.yml
+social-network-links:
+  rss: true
   github: jrudlin
-  instagram:
-  linkedin: jrudlin
-  pinterest:
-  rss: rss
   twitter: JackRudlin
-  stackoverflow: 
+  linkedin: jrudlin
   youtube: channel/UC4HLOzhot4BzEzA9D7EFkXw
-  googleplus: # anything in your profile username that comes after plus.google.com/
-  playconsole:
+#  email: "someone@example.com"
+#  facebook: deanattali
+#  reddit: yourname
+#  xing: yourname
+#  stackoverflow: "3943160/daattali"
+#  snapchat: deanat78
+#  instagram: deanat78
+#  spotify: yourname
+#  telephone: +14159998888
+#  steam: deanat78
+#  twitch: yourname
+#  yelp: yourname
 
+# Select which share links to show in posts
+share-links-active:
+  twitter: true
+  facebook: true
+  linkedin: true
 
-# Enter your Disqus shortname (not your username) to enable commenting on posts
+# How to display the link to the website in the footer
+# Remove this if you don't want a link in the footer
+url-pretty: "jrudlin.github.io"
+
+# --- Web Statistics Section --- #
+
+# Fill in your Google Analytics gtag.js ID to track your website using gtag
+#gtag: ""
+
+# Fill in your Google Analytics ID to track your website using GA
+google_analytics:
+
+# Google Tag Manager ID
+#gtm: ""
+
+# Matomo (aka Piwik) Web statistics
+# Uncomment the following section to enable Matomo. The opt-out parameter controls
+# whether or not you want to allow users to opt out of tracking.
+
+#matomo:
+#  site_id: "9"
+#  uri: "demo.wiki.pro"
+#  opt-out: true
+
+# --- Comments --- #
+
+# Fill in your Disqus shortname (NOT the userid) if you want to support Disqus comments
 # You can find your shortname on the Settings page of your Disqus account
-disqus: 
+disqus:
 
-# Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
-google_analytics: 
+# --- Misc --- #
 
-# Your website URL (e.g. http://amitmerchant1990.github.io or http://www.amitmerchant.com)
-# Used for Sitemap.xml and your RSS feed
-url: https://jrudlin.github.io
-enforce_ssl: https://jrudlin.github.io
+# Facebook App ID
+# fb_app_id: ""
 
-# If you're hosting your site at a Project repository on GitHub pages
-# (http://yourusername.github.io/repository-name)
-# and NOT your User repository (http://yourusername.github.io)
-# then add in the baseurl here, like this: "/repository-name"
-baseurl:
+# Excerpt Word Length
+# Truncates the excerpt to the specified number of words on the index page
+excerpt_length: 50
 
-#
-# !! You don't need to change any of the configuration flags below !!
-#
+# Character used to separate site title and description in HTML document title
+# and RSS feed title
+title-separator: "-"
 
-permalink: /:title/
+# --- Don't need to touch anything below here (but you can if you want) --- #
 
-# The release of Jekyll Now that you're using
-version: v1.2.0
+# Output options (more information on Jekyll's site)
+timezone: "Europe/London"
+markdown: kramdown
+highlighter: rouge
+permalink: /:year-:month-:day-:title/
+paginate: 5
 
-# Jekyll 3 now only supports Kramdown for Markdown
 kramdown:
-  # Use GitHub flavored markdown, including triple backtick fenced code blocks
   input: GFM
-  # Jekyll 3 and GitHub Pages now only support rouge for syntax highlighting
-  syntax_highlighter: rouge
-  syntax_highlighter_opts:
-    # Use existing pygments syntax highlighting css
-    css_class: 'highlight'
 
-# Set the Sass partials directory, as we're using @imports
-sass:
-  style: :expanded # You might prefer to minify using :compressed
+# Default YAML values (more information on Jekyll's site)
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      comments: true  # add comments to all blog posts
+      social-share: true # add social media sharing buttons to all blog posts
+  -
+    scope:
+      path: "" # all files
+    values:
+      layout: "page"
+      show-avatar: true
 
-# Use the following plug-ins
-plugins:
-  - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
-  - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
-  - jekyll-seo-tag
+# Use tags index page and make tags on each post clickable
+link-tags: true
 
-include: ['_pages']
-
-# Exclude these files from your production _site
+# Exclude these files from production site
 exclude:
+  - CHANGELOG.md
+  - CNAME
+  - Dockerfile
   - Gemfile
   - Gemfile.lock
   - LICENSE
   - README.md
-  - CNAME
+  - Vagrantfile
 
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
