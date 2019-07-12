@@ -69,7 +69,7 @@ This will give you a list of the databases and mostly importantly, the **dbid.&n
 
 <!-- wp:image {"id":327} -->
 
-<figure class="wp-block-image"><img src="%7B%7B%20site.baseurl%20%7D%7D/assets/images/sp_helpdb.jpg?w=812" alt="" class="wp-image-327"></figure>
+<figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/sp_helpdb.jpg?w=812" alt="" class="wp-image-327"></figure>
 
 <!-- /wp:image -->
 
@@ -258,7 +258,7 @@ Add the contents of[&nbsp;SCCM SQL Ola Hallengren Maintenance Scripts.ps1](https
 
 <!-- wp:image {"id":322} -->
 
-<figure class="wp-block-image"><img src="%7B%7B%20site.baseurl%20%7D%7D/assets/images/1.compliance.jpg" alt="" class="wp-image-322"></figure>
+<figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/1.compliance.jpg" alt="" class="wp-image-322"></figure>
 
 <!-- /wp:image -->
 
@@ -270,7 +270,7 @@ Add a dummy compliance rule:
 
 <!-- wp:image {"id":323} -->
 
-<figure class="wp-block-image"><img src="%7B%7B%20site.baseurl%20%7D%7D/assets/images/2.compliance.jpg" alt="" class="wp-image-323"></figure>
+<figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/2.compliance.jpg" alt="" class="wp-image-323"></figure>
 
 <!-- /wp:image -->
 
@@ -310,13 +310,13 @@ Not much to look at, but from the SSMS we can see the agent jobs and the schedul
 
 <!-- wp:image {"id":325} -->
 
-<figure class="wp-block-image"><img src="%7B%7B%20site.baseurl%20%7D%7D/assets/images/sqlagentjobs.jpg" alt="" class="wp-image-325"></figure>
+<figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/sqlagentjobs.jpg" alt="" class="wp-image-325"></figure>
 
 <!-- /wp:image -->
 
 <!-- wp:gallery {"ids":[324]} -->
 
-- <figure><img src="%7B%7B%20site.baseurl%20%7D%7D/assets/images/jobschedules.jpg" data-id="324" class="wp-image-324"></figure>
+- <figure><img src="{{ site.baseurl }}/assets/images/jobschedules.jpg" data-id="324" class="wp-image-324"></figure>
 
 <!-- /wp:gallery -->
 

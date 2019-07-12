@@ -100,7 +100,7 @@ You may ask, why not just format the disk first and run the script? Well if you 
 
 <!-- wp:image {"id":340} -->
 
-<figure class="wp-block-image"><img src="%7B%7B%20site.baseurl%20%7D%7D/assets/images/all-steps.jpg" alt="" class="wp-image-340"></figure>
+<figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/all-steps.jpg" alt="" class="wp-image-340"></figure>
 
 <!-- /wp:image -->
 
@@ -118,13 +118,13 @@ Create a condition on the group so that it only creates the vdisk if no local di
 
 <!-- wp:image {"id":345} -->
 
-<figure class="wp-block-image"><img src="%7B%7B%20site.baseurl%20%7D%7D/assets/images/temp-local-disk-group.jpg" alt="" class="wp-image-345"></figure>
+<figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/temp-local-disk-group.jpg" alt="" class="wp-image-345"></figure>
 
 <!-- /wp:image -->
 
 <!-- wp:image {"id":344} -->
 
-<figure class="wp-block-image"><img src="%7B%7B%20site.baseurl%20%7D%7D/assets/images/temp-local-disk-group2.jpg" alt="" class="wp-image-344"></figure>
+<figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/temp-local-disk-group2.jpg" alt="" class="wp-image-344"></figure>
 
 <!-- /wp:image -->
 
@@ -152,13 +152,13 @@ cmd.exe /c echo create vdisk file="%temp%\temp.vhdx" maximum=100 \>\> %temp%\dis
 
 <!-- wp:image {"id":347} -->
 
-<figure class="wp-block-image"><img src="%7B%7B%20site.baseurl%20%7D%7D/assets/images/diskpart-cmds.jpg" alt="" class="wp-image-347"></figure>
+<figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/diskpart-cmds.jpg" alt="" class="wp-image-347"></figure>
 
 <!-- /wp:image -->
 
 <!-- wp:image {"id":346} -->
 
-<figure class="wp-block-image"><img src="%7B%7B%20site.baseurl%20%7D%7D/assets/images/diskpart-cmds2.jpg" alt="" class="wp-image-346"></figure>
+<figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/diskpart-cmds2.jpg" alt="" class="wp-image-346"></figure>
 
 <!-- /wp:image -->
 
@@ -184,13 +184,13 @@ diskpart.exe /s %temp%\diskpartvDisk.txt
 
 <!-- wp:image {"id":343} -->
 
-<figure class="wp-block-image"><img src="%7B%7B%20site.baseurl%20%7D%7D/assets/images/run-diskpart.jpg" alt="" class="wp-image-343"></figure>
+<figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/run-diskpart.jpg" alt="" class="wp-image-343"></figure>
 
 <!-- /wp:image -->
 
 <!-- wp:image {"id":342} -->
 
-<figure class="wp-block-image"><img src="%7B%7B%20site.baseurl%20%7D%7D/assets/images/run-diskpart2.jpg" alt="" class="wp-image-342"></figure>
+<figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/run-diskpart2.jpg" alt="" class="wp-image-342"></figure>
 
 <!-- /wp:image -->
 
@@ -208,7 +208,7 @@ Run any script/file, whatever you want, using package content
 
 <!-- wp:image {"id":341} -->
 
-<figure class="wp-block-image"><img src="%7B%7B%20site.baseurl%20%7D%7D/assets/images/ui-prompt-package.jpg" alt="" class="wp-image-341"></figure>
+<figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/ui-prompt-package.jpg" alt="" class="wp-image-341"></figure>
 
 <!-- /wp:image -->
 
@@ -226,13 +226,13 @@ Has the following condition
 
 <!-- wp:image {"id":339} -->
 
-<figure class="wp-block-image"><img src="%7B%7B%20site.baseurl%20%7D%7D/assets/images/cleanup-group.jpg" alt="" class="wp-image-339"></figure>
+<figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/cleanup-group.jpg" alt="" class="wp-image-339"></figure>
 
 <!-- /wp:image -->
 
 <!-- wp:image {"id":338} -->
 
-<figure class="wp-block-image"><img src="%7B%7B%20site.baseurl%20%7D%7D/assets/images/cleanup-group2.jpg" alt="" class="wp-image-338"></figure>
+<figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/cleanup-group2.jpg" alt="" class="wp-image-338"></figure>
 
 <!-- /wp:image -->
 
@@ -258,13 +258,13 @@ cmd.exe /c echo list volume\> %temp%\diskpartDelvDiskList.txt & for /f "tokens=1
 
 <!-- wp:image {"id":337} -->
 
-<figure class="wp-block-image"><img src="%7B%7B%20site.baseurl%20%7D%7D/assets/images/cleanup-diskpart-cmds.jpg" alt="" class="wp-image-337"></figure>
+<figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/cleanup-diskpart-cmds.jpg" alt="" class="wp-image-337"></figure>
 
 <!-- /wp:image -->
 
 <!-- wp:image {"id":336} -->
 
-<figure class="wp-block-image"><img src="%7B%7B%20site.baseurl%20%7D%7D/assets/images/cleanup-diskpart-cmds2.jpg" alt="" class="wp-image-336"></figure>
+<figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/cleanup-diskpart-cmds2.jpg" alt="" class="wp-image-336"></figure>
 
 <!-- /wp:image -->
 
@@ -284,13 +284,13 @@ diskpart.exe /s %temp%\diskpartDelvDisk.txt
 
 <!-- wp:image {"id":350} -->
 
-<figure class="wp-block-image"><img src="%7B%7B%20site.baseurl%20%7D%7D/assets/images/cleanup-diskpart.jpg" alt="" class="wp-image-350"></figure>
+<figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/cleanup-diskpart.jpg" alt="" class="wp-image-350"></figure>
 
 <!-- /wp:image -->
 
 <!-- wp:image {"id":349} -->
 
-<figure class="wp-block-image"><img src="%7B%7B%20site.baseurl%20%7D%7D/assets/images/cleanup-diskpart2.jpg" alt="" class="wp-image-349"></figure>
+<figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/cleanup-diskpart2.jpg" alt="" class="wp-image-349"></figure>
 
 <!-- /wp:image -->
 
