@@ -55,7 +55,7 @@ This will give you a list of the databases and mostly importantly, the **dbid.&n
 
 <figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/sp_helpdb.jpg?w=812" alt="" class="wp-image-327"></figure>
 
-```
+```tsql
 select * from sys.dm_db_index_physical_stats (7,DEFAULT,DEFAULT,DEFAULT,DEFAULT)
 where page_count > 1000
 order by avg_fragmentation_in_percent desc 
@@ -127,7 +127,7 @@ points to a location that contains the SQLServer module file **SqlServer.psm1** 
 
 Adjust the schedules to your liking:
 
-```PowerShell
+```powershell
 $SQLJobsConfig
 ```
 
