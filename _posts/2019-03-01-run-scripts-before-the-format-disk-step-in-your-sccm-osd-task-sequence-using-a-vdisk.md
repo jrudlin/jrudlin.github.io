@@ -38,19 +38,9 @@ author:
   last_name: ''
 permalink: "/2019/03/01/run-scripts-before-the-format-disk-step-in-your-sccm-osd-task-sequence-using-a-vdisk/"
 ---
-<!-- wp:heading -->
-
 ## Scenario
 
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
 You've got your SCCM OSD Task Sequence ready/working but you want to run some scripts in the WinPE phase before the Format Disk steps.
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
 
 This will generally work well if there is a formatted disk available as you can just reference your script in a package like you normally would, and the package content will be downloaded to the disk.
 
@@ -84,7 +74,7 @@ One of the most commonly used solutions out there right now is to run scripts di
 
 <!-- wp:image {"id":348} -->
 
-<figure class="wp-block-image"><img src="%7B%7B%20site.baseurl%20%7D%7D/assets/images/sccm-run-scripts-from-unc.jpg" alt="" class="wp-image-348"><br>
+<figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/sccm-run-scripts-from-unc.jpg" alt="" class="wp-image-348"><br>
 <figcaption>Running scripts from the network without package content download</figcaption>
 </figure>
 
