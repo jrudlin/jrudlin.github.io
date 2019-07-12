@@ -36,14 +36,14 @@ The RD Web pages are stored on each of the RD Web Access servers in the system d
 
 # Custom Windows 10 help link on the Login page
 
-[code language="powershell"]  
+```powershell
 #Set your RD Web servers  
 $RDBrokerWebGatewayServer1 = "rds-001"  
 $RDBrokerWebGatewayServer2 = "rds-002"
 
 #Change to local help instead of out-dated 2008 R2 RDS help online  
 Invoke-Command -ComputerName $RDBrokerWebGatewayServer1,$RDBrokerWebGatewayServer2 -ScriptBlock {Set-WebConfigurationProperty -pspath 'MACHINE/WEBROOT/APPHOST/Default Web Site/RDWeb/Pages' -filter "appSettings/add[@key='LocalHelp']" -name "value" -value "true"}  
-[/code]
+```
 
 Make the highlighted updates:
 
