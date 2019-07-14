@@ -120,6 +120,10 @@ Run the following script to create a diskpart file that will cleanup the existin
 cmd.exe /c echo list volume\> %temp%\diskpartDelvDiskList.txt & for /f "tokens=1-4" %a in ('diskpart /s %temp%\diskpartDelvDiskList.txt ^| find "Temp Vol"') do echo select %a %b\> %temp%\diskpartDelvDisk.txt & echo clean\>\> %temp%\diskpartDelvDisk.txt & echo offline disk\>\> %temp%\diskpartDelvDisk.txt
 ```
 
+```sql
+select * from JackTest
+```
+
 <figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/cleanup-diskpart-cmds.jpg" alt="" class="wp-image-337"></figure>
 
 <figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/cleanup-diskpart-cmds2.jpg" alt="" class="wp-image-336"></figure>
