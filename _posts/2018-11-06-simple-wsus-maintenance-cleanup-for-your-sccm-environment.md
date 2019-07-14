@@ -87,9 +87,9 @@ There are comments from those in the know that certain WSUS cleanup tasks [recom
 
 1. The CAS server (\*VM01\*) initiates a sync on the top level WSUS - (\*565):  
  ![WSUS_01]({{ site.baseurl }}/assets/images/wsus_011.png)
-2. Once the WSUS sync with the Microsoft Update catalog is done, SCCM syncÔÇÖs itÔÇÖs database with WSUS:  
+2. Once the WSUS sync with the Microsoft Update catalog is done, SCCM syncs its database with WSUS:  
  ![WSUS_02]({{ site.baseurl }}/assets/images/wsus_02.png)
-3. Cleanup is then performed on the top tier WSUS. Cleanup in this case is marking updates as ÔÇÿdeclinedÔÇÖ ÔÇô this is important:  
+3. Cleanup is then performed on the top tier WSUS. Cleanup in this case is marking updates as **declined**, this is important:  
  ![WSUS_03]({{ site.baseurl }}/assets/images/wsus_03.png)
 4. At this stage, nothing has happened with the lower tier WSUS servers. The CAS now updates the Primary Sites inboxes, requesting a WSUS Sync to the top tier WSUS:  
  ![WSUS_04]({{ site.baseurl }}/assets/images/wsus_041.png)
@@ -108,7 +108,7 @@ Now to process the remaining WSUS cleanup options that Microsoft have stated **S
 
 ## The Custom Cleanup script
 
-I have taken some Powershell from [@Bdam55](https://twitter.com/bdam555)┬áto cover the above three WSUS cleanup tasks and converted it to run as an SCCM Configuration Item on a schedule:
+I have taken some Powershell from [@Bdam55](https://twitter.com/bdam555) to cover the above three WSUS cleanup tasks and converted it to run as an SCCM Configuration Item on a schedule:
 
 [SCCM WSUS Cleanup script on Github](https://github.com/jrudlin/SCCM-WSUS_Cleanup)
 
@@ -127,17 +127,18 @@ When the script runs on the SCCM Site Server, it actually connects to each of th
 
 Top level WSUS detection:
 
-[code language="powershell"]  
-$TopTierWsus = Get-CMSoftwareUpdateSyncStatus | Where-Object -FilterScript {$\_.WSUSSourceServer -like "\*Microsoft Update\*" -and $\_.SiteCode -eq $SiteCode} | Select-Object -Unique -ExpandProperty WSUSServerName&amp;lt;span data-mce-type="bookmark" id="mce\_SELREST\_start" data-mce-style="overflow:hidden;line-height:0" style="overflow:hidden;line-height:0" &amp;gt;&amp;lt;/span&amp;gt;  
-[/code]
+```powershell
+$TopTierWsus = Get-CMSoftwareUpdateSyncStatus | Where-Object -FilterScript {$_.WSUSSourceServer -like "\*Microsoft Update\*" -and $_.SiteCode -eq $SiteCode} | Select-Object -Unique -ExpandProperty WSUSServerName
+```
 
-As per [https://blogs.technet.microsoft.com/meamcs/2018/10/09/resolving-wsus-performance-issues/](https://blogs.technet.microsoft.com/meamcs/2018/10/09/resolving-wsus-performance-issues/) the script now also configures the minimum values for:
+As per [https://blogs.technet.microsoft.com/meamcs/2018/10/09/resolving-wsus-performance-issues](https://blogs.technet.microsoft.com/meamcs/2018/10/09/resolving-wsus-performance-issues/) the script now also configures the minimum values for:
 
 - WSUS App Pool queue length
 - WSUS App Pool memory size
 
-[code language="powershell"]  
 # WSUS IIS AppPool Variables  
+
+```powershell
 $WSUSSiteNameFilter = "WSUS\*"  
 $IISAppPoolQueueMinSize = 2000  
 $IISAppPoolMemoryMinSize = 4194304  
@@ -186,7 +187,7 @@ else
 {  
  Add-TextToCMLog -LogFile $LogFile -Value "Could not load module $ISSWebAdminModuleNAme. Skipping IIS config" -Component $component -Severity 3  
 }  
-&amp;lt;span id="mce\_SELREST\_start" style="overflow: hidden; line-height: 0;"&amp;gt;&amp;lt;/span&amp;gt;[/code]
+```
 
 If the SCCM hierarchy is expanded to cope with additional load, or new servers are brought online to do a side-by-side migration, the Configuration Item should kick-in and cover these off automatically.
 
