@@ -146,8 +146,7 @@ paginate: 5
 kramdown:
   input: GFM
   syntax_highlighter_opts:
-    block:
-      line_numbers: true
+    default_lang: powershell
 
 # Default YAML values (more information on Jekyll's site)
 defaults:
@@ -185,3 +184,5 @@ exclude:
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
+  - jemoji
+  - jekyll-mentions
