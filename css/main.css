@@ -684,10 +684,7 @@ pre {
   font-size: 16px;
   line-height: 1.5em;
 }
-.highlight pre {
-  border: none;
-  margin: 0;
-}
+
 .highlight > pre {
   background-image: linear-gradient(
     rgba(0,0,0,0.06), rgba(0,0,0,0.06) 1.5em, rgba(0,0,0,0.03) 1.5em, rgba(0,0,0,0.03) 3em);
