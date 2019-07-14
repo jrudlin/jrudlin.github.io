@@ -41,20 +41,20 @@ When using the click-to-run C2R installer setup.ex from the [Office Deployment T
 This error seemed to appear because of the [RemoveMSI](https://docs.microsoft.com/en-us/deployoffice/configuration-options-for-the-office-2016-deployment-tool#removemsi-element) property in the ODT Configuration.xml:
 
 ```xml
-<Configuration\>  
- <Add OfficeClientEdition="32" Channel="Broad" OfficeMgmtCOM="TRUE"\>  
-  <Product ID="O365ProPlusRetail"\>  
-   <Language ID="en-us" /\>  
-   <ExcludeApp ID="Groove" /\>  
-  </Product\>  
- </Add\>  
- <RemoveMSI All="True" /\>  
- <Property Name="FORCEAPPSHUTDOWN" Value="True"/\>  
- <Property Name="SharedComputerLicensing" Value="0" /\>  
- <Property Name="PinIconsToTaskbar" Value="FALSE" /\>  
- <Display Level="None" AcceptEULA="TRUE" /\>  
- <Logging Level="Standard" Path="C:\Temp"/\>  
-</Configuration\>
+<Configuration>  
+ <Add OfficeClientEdition="32" Channel="Broad" OfficeMgmtCOM="TRUE">  
+  <Product ID="O365ProPlusRetail">  
+   <Language ID="en-us" />  
+   <ExcludeApp ID="Groove" />  
+  </Product>  
+ </Add>  
+ <RemoveMSI All="True" />  
+ <Property Name="FORCEAPPSHUTDOWN" Value="True"/>  
+ <Property Name="SharedComputerLicensing" Value="0" />  
+ <Property Name="PinIconsToTaskbar" Value="FALSE" />  
+ <Display Level="None" AcceptEULA="TRUE" />  
+ <Logging Level="Standard" Path="C:\Temp"/>  
+</Configuration>
 ```
 
 In the Office 365 ODT logs I was getting errors like:
