@@ -47,13 +47,13 @@ This time round it's the renowned **Ola Hallengren** [SQL maintenance](https://o
 
 You can check for SQL fragmentation using this T-SQL:
 
-```TSQL
+```sql
 sp_helpdb
 ```
 
 This will give you a list of the databases and mostly importantly, the **dbid.&nbsp;** The&nbsp;ConfigMgr&nbsp;database&nbsp;in&nbsp;this&nbsp;example&nbsp;has&nbsp;ID&nbsp;=&nbsp;7
 
-<figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/sp_helpdb.jpg?w=812" alt="" class="wp-image-327"></figure>
+![sp_helper] ({{ site.baseurl }}/assets/images/sp_helpdb.jpg)
 
 ```sql
 select * from sys.dm_db_index_physical_stats (7,DEFAULT,DEFAULT,DEFAULT,DEFAULT)
