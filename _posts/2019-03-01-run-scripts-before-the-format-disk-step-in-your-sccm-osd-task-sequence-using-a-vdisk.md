@@ -79,7 +79,7 @@ In the WinPE phase, right at the beginning of the Task Sequence create a Run Com
 **Note:&nbsp;** The space available in WinPE RAM drive is adjustable in the boot image properties.
 
 ```batchfile
-cmd.exe /c echo create vdisk file="%temp%\temp.vhdx" maximum=100 \>\> %temp%\diskpartvDisk.txt && cmd.exe /c echo select vdisk file="%temp%\temp.vhdx" \>\> %temp%\diskpartvDisk.txt && cmd.exe /c echo attach vdisk \>\> %temp%\diskpartvDisk.txt && cmd.exe /c echo create part primary \>\> %temp%\diskpartvDisk.txt && cmd.exe /c echo format fs=ntfs label="Temp Vol" quick \>\> %temp%\diskpartvDisk.txt && cmd.exe /c echo assign \>\> %temp%\diskpartvDisk.txt
+cmd.exe /c echo create vdisk file="%temp%\temp.vhdx" maximum=100 >> %temp%\diskpartvDisk.txt && cmd.exe /c echo select vdisk file="%temp%\temp.vhdx" >> %temp%\diskpartvDisk.txt && cmd.exe /c echo attach vdisk >> %temp%\diskpartvDisk.txt && cmd.exe /c echo create part primary >> %temp%\diskpartvDisk.txt && cmd.exe /c echo format fs=ntfs label="Temp Vol" quick >> %temp%\diskpartvDisk.txt && cmd.exe /c echo assign >> %temp%\diskpartvDisk.txt
 ```
 
 <figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/diskpart-cmds.jpg" alt="" class="wp-image-347"></figure>
@@ -117,11 +117,7 @@ Has the following condition
 Run the following script to create a diskpart file that will cleanup the existing vdisk
 
 ```batchfile
-cmd.exe /c echo list volume\> %temp%\diskpartDelvDiskList.txt & for /f "tokens=1-4" %a in ('diskpart /s %temp%\diskpartDelvDiskList.txt ^| find "Temp Vol"') do echo select %a %b\> %temp%\diskpartDelvDisk.txt & echo clean\>\> %temp%\diskpartDelvDisk.txt & echo offline disk\>\> %temp%\diskpartDelvDisk.txt
-```
-
-```sql
-select * from JackTest
+cmd.exe /c echo list volume> %temp%\diskpartDelvDiskList.txt & for /f "tokens=1-4" %a in ('diskpart /s %temp%\diskpartDelvDiskList.txt ^| find "Temp Vol"') do echo select %a %b> %temp%\diskpartDelvDisk.txt & echo clean>> %temp%\diskpartDelvDisk.txt & echo offline disk>> %temp%\diskpartDelvDisk.txt
 ```
 
 <figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/cleanup-diskpart-cmds.jpg" alt="" class="wp-image-337"></figure>

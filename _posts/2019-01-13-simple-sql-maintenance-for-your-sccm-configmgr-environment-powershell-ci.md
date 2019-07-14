@@ -101,7 +101,7 @@ Disable Jobs that are related to: DBCC/Integrity Checks/Indexing
 - Download a copy of my [SCCM SQL Ola Hallengren Maintenance Scripts.ps1](https://github.com/jrudlin/SCCM-SQL-Maintenance/blob/master/SCCM%20SQL%20Ola%20Hallengren%20Maintenance%20Scripts.ps1). 
 - Download the latest copy of [MaintenanceSolution.sql](https://github.com/olahallengren/sql-server-maintenance-solution/blob/master/MaintenanceSolution.sql) 
 - Copy the [MaintenanceSolution.sql](https://github.com/olahallengren/sql-server-maintenance-solution/blob/master/MaintenanceSolution.sql) file to a network share that the computer accounts of the SCCM SQL Server and SUP Servers can access - this is the recommended approach so that all SQL servers can access the same version. 
-- Grab a copy of the [SQLServer](https://www.powershellgallery.com/packages/SqlServer)module from the PowerShell gallery and copy to a network share. Same permissions as mentioned above.
+- Grab a copy of the [SQLServer](https://www.powershellgallery.com/packages/SqlServer) module from the PowerShell gallery and copy to a network share. Same permissions as mentioned above.
 
 
 ### Script Preparation
@@ -109,7 +109,7 @@ Disable Jobs that are related to: DBCC/Integrity Checks/Indexing
 In the downloaded copy of [SCCM SQL Ola Hallengren Maintenance Scripts.ps1](https://github.com/jrudlin/SCCM-SQL-Maintenance/blob/master/SCCM%20SQL%20Ola%20Hallengren%20Maintenance%20Scripts.ps1), amend **line 32** variable:
 
 
-```PowerShell
+```powershell
 $OlaHallengrenScriptLocation =
 ```
 
@@ -119,7 +119,7 @@ file.
 
 Also confirm that **line 37** variable:
 
-```PowerShell
+```powershell
 $SQLServerPoShModule =
 ```
 
@@ -148,11 +148,11 @@ Add a dummy compliance rule:
 
 Add the CI to a new Baseline and deploy the baseline to your SCCM SQL/WSUS servers collection. I used the below two queries for my collection:
 
-```TSQL
+```sql
 select SMS_R_SYSTEM.ResourceID,SMS_R_SYSTEM.ResourceType,SMS_R_SYSTEM.Name,SMS_R_SYSTEM.SMSUniqueIdentifier,SMS_R_SYSTEM.ResourceDomainORWorkgroup,SMS_R_SYSTEM.Client from SMS_R_System where SMS_R_System.SystemRoles = "SMS SQL Server"
 ```
 
-```TSQL
+```sql
 select SMS_R_SYSTEM.ResourceID,SMS_R_SYSTEM.ResourceType,SMS_R_SYSTEM.Name,SMS_R_SYSTEM.SMSUniqueIdentifier,SMS_R_SYSTEM.ResourceDomainORWorkgroup,SMS_R_SYSTEM.Client from SMS_R_System where SMS_R_System.SystemRoles = "SMS Software Update Point"
 ```
 
