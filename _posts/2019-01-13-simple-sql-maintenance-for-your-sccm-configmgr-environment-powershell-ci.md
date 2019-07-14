@@ -78,7 +78,7 @@ The CI is targetted at a dynamic collection containing all SCCM SQL servers and 
 
 # Script Overview
 
-The [script](https://github.com/jrudlin/SCCM-SQL-Maintenance/blob/master/SCCM%20SQL%20Ola%20Hallengren%20Maintenance%20Scripts.ps1)does the following:
+The [script](https://github.com/jrudlin/SCCM-SQL-Maintenance/blob/master/SCCM%20SQL%20Ola%20Hallengren%20Maintenance%20Scripts.ps1) does the following:
 
 - Retrieves the Ola Hallengren **MaintenanceSolution.sql** from the disk or network
 - Loads the SQL Server PoSh module from the disk or network

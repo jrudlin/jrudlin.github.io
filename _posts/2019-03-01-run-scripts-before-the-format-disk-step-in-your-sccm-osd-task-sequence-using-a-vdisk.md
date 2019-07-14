@@ -76,9 +76,9 @@ Create a condition on the group so that it only creates the vdisk if no local di
 
 In the WinPE phase, right at the beginning of the Task Sequence create a Run Command Line step with the following code (adjust the vdisk size according to the amount of content you need to download before the format disk step using **maximum=xxx** ).
 
-**Note:&nbsp;** The&nbsp;space available in WinPE RAM drive is adjustable in the boot image properties.
+**Note:&nbsp;** The space available in WinPE RAM drive is adjustable in the boot image properties.
 
-```
+```batchfile
 cmd.exe /c echo create vdisk file="%temp%\temp.vhdx" maximum=100 \>\> %temp%\diskpartvDisk.txt && cmd.exe /c echo select vdisk file="%temp%\temp.vhdx" \>\> %temp%\diskpartvDisk.txt && cmd.exe /c echo attach vdisk \>\> %temp%\diskpartvDisk.txt && cmd.exe /c echo create part primary \>\> %temp%\diskpartvDisk.txt && cmd.exe /c echo format fs=ntfs label="Temp Vol" quick \>\> %temp%\diskpartvDisk.txt && cmd.exe /c echo assign \>\> %temp%\diskpartvDisk.txt
 ```
 
@@ -90,7 +90,7 @@ cmd.exe /c echo create vdisk file="%temp%\temp.vhdx" maximum=100 \>\> %temp%\dis
 
 Run diskpart.exe against the file created in the previous step
 
-```
+```batchfile
 diskpart.exe /s %temp%\diskpartvDisk.txt
 ```
 
@@ -116,7 +116,7 @@ Has the following condition
 
 Run the following script to create a diskpart file that will cleanup the existing vdisk
 
-```
+```batchfile
 cmd.exe /c echo list volume\> %temp%\diskpartDelvDiskList.txt & for /f "tokens=1-4" %a in ('diskpart /s %temp%\diskpartDelvDiskList.txt ^| find "Temp Vol"') do echo select %a %b\> %temp%\diskpartDelvDisk.txt & echo clean\>\> %temp%\diskpartDelvDisk.txt & echo offline disk\>\> %temp%\diskpartDelvDisk.txt
 ```
 
@@ -126,7 +126,7 @@ cmd.exe /c echo list volume\> %temp%\diskpartDelvDiskList.txt & for /f "tokens=1
 
 ### Run Command Line - Run DiskPart Del vDisk File
 
-```
+```batchfile
 diskpart.exe /s %temp%\diskpartDelvDisk.txt
 ```
 
