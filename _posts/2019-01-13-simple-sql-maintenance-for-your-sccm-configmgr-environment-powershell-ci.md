@@ -53,7 +53,7 @@ sp_helpdb
 
 This will give you a list of the databases and mostly importantly, the **dbid.&nbsp;** The&nbsp;ConfigMgr&nbsp;database&nbsp;in&nbsp;this&nbsp;example&nbsp;has&nbsp;ID&nbsp;=&nbsp;7
 
-![sp_helper] (/assets/images/sp_helpdb.jpg)
+![sp_helper](/assets/images/sp_helpdb.jpg)
 
 ```sql
 select * from sys.dm_db_index_physical_stats (7,DEFAULT,DEFAULT,DEFAULT,DEFAULT)
