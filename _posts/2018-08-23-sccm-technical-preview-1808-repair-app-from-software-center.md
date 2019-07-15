@@ -45,6 +45,7 @@ So lets get started and see how this new feature is implemented from the SCCM Co
 1. Update your existing Application, or create a new one. Add a repair program in.
 **Note:** You can usually find the ModifyPath of a an existing installed app from the Registry:
 > Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall
+
 However, beware this key represents a 'modify', so it would probably be interactive and may not be suitable for your silent repair.
 ![SCCM Repair app 2]({{ site.baseurl }}/assets/images/sccm-repair-app-2.jpg)
 
@@ -61,3 +62,4 @@ However, beware this key represents a 'modify', so it would probably be interact
 ![SCCM Repair app 5]({{ site.baseurl }}/assets/images/sccm-repair-app-5.jpg)
 
 6. Thanks, and enjoy. I told you it was a quick one
+
