@@ -50,21 +50,24 @@ Therefore I wrote a small **function to retrieve the .cab files' UNC location** 
 You will need access to the WMI (SMS) provider on the SCCM site server for this to work.  
 Also, SCCM must have already downloaded the updates into a deployment package stored on a file share. I hope you have this part automated using an ADR already.
 
-1. First specify your **CAS or Primary Site server name** where the SMS Provider is running so that you can query WMI:
+- First specify your **CAS or Primary Site server name** where the SMS Provider is running so that you can query WMI:
+
 ```powershell
 # Specific SCCM site details  
 $siteserver = "SCCMCAS1.domain.local"  
 $sitecode = "CAS"  
 ```
 
-2. The WMI class we will use is the **SMS_SoftwareUpdate** amongst others, but this is the most important and regularly used one, so I've set it as a variable.  
+- The WMI class we will use is the **SMS_SoftwareUpdate** amongst others, but this is the most important and regularly used one, so I've set it as a variable.  
 The namespace is built from the **$sitecode** above.
+
 ```powershell
 $class = "SMS_SoftwareUpdate"  
 $NameSpace = "root\SMS\Site\$sitecode"  
 ```
 
-3. The most important part, the WMI filter ($UpdatesFilter) used to pick specific updates based on your criteria from the SCCM Software Updates database. In this example I wanted only Windows 10 1803 x64 updates with the matching articleID.
+- The most important part, the WMI filter ($UpdatesFilter) used to pick specific updates based on your criteria from the SCCM Software Updates database. In this example I wanted only Windows 10 1803 x64 updates with the matching articleID.
+
 ```powershell
 $UpdatesFilter = "LocalizedDisplayName like '%1803 for x64%' and articleid="  
 ```
