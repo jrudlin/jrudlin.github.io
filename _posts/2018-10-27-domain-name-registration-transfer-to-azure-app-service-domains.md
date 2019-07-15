@@ -90,6 +90,7 @@ There are probably other ways to initiate a domain name transfer into Azure usin
 
 4. For a domain transfer, I used the following body:  
 **Note:** some of the properties are mandatory/required
+
 ```json
 {  
   location: "Global",  
@@ -114,7 +115,7 @@ There are probably other ways to initiate a domain name transfer into Azure usin
 
 You should get a **202** response back if the post was successful
 
-**Note: Don't forget to escape your JSON! Check the authCode. I had a backslash \ in mine so I had to escape it with an additional \
+**Note**: Don't forget to escape your JSON! Check the authCode. I had a backslash \ in mine so I had to escape it with an additional \
 
 1. In the Azure Resource Group that you specified in the earlier parameters, the App Service should be listed with the domain name you are transferring: ![rg]({{ site.baseurl }}/assets/images/rg.png)
 

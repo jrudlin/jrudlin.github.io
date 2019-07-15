@@ -42,7 +42,7 @@ Wow that's a long title. To summarise:
 
 If you have many different SCCM hierarchies in different AD domains and forests to manage, keeping relevant/up to date infrastructure diagrams can be time consuming, especially if there are lots of SCCM site systems, Visio can become painful to use.
 
-I have put this script together:┬á[SCCM Visio diagram.ps1](https://github.com/jrudlin/SCCM-Visio-PoSh/blob/master/SCCM%20Document%20Infrastructure%20with%20Visio%20diagram%20output.ps1)┬áwith the help of colleague┬á **Ben Jones** (especially for the maths parts) that **<u>automatically creates a Microsoft Visio diagram of your SCCM / ConfigMgr hierarchy</u>.**
+I have put this script together: [SCCM Visio diagram.ps1](https://github.com/jrudlin/SCCM-Visio-PoSh/blob/master/SCCM%20Document%20Infrastructure%20with%20Visio%20diagram%20output.ps1) with the help of colleague **Ben Jones** (especially for the maths parts) that **<u>automatically creates a Microsoft Visio diagram of your SCCM / ConfigMgr hierarchy</u>.**
 
 I know there are tools like the CMMap / SMSMap ones, but the SMSMap one in particular is using older shapes, has not been tested with SCCM 2012+ or Visio 2013+. I noticed it was also creating duplicate servers for each role! which is a fairly big overhead when you have 100's of roles.
 
@@ -58,24 +58,25 @@ I wanted to see an open source script that could be used on a schedule to automa
 
 - Microsoft Office Visio 2016 Standard or Professional must be installed on the machine from where the script is run. (Sorry, I know a license is required - I haven't tested with the trial version)
 - Download and extract [SCCM Visio stencils](https://gallery.technet.microsoft.com/System-Center-Configuration-d67b8ac5) and then adjust line 12:  
-[code language="powershell"]  
+
+```powershell
 # Custom SCCM Stencils used for building the infrastructure diagram  
-$SCCM\_Servers\_Stencil\_Path="\\domain.local\shares\files\visio\it\ConfigMgr\_1610\_Visio\_Stencils\_v1.3\ConfigMgr 1610 (Servers).vss"  
-[/code]
+$SCCM_Servers_Stencil_Path="\\domain.local\shares\files\visio\it\ConfigMgr\1610\Visio\Stencils\v1.3\ConfigMgr 1610 (Servers).vss"  
+```
+
 - Network access to the HTTP/HTTPS port of the top level SCCM Reporting services point site
 - SCCM Reporting Reader rights with access to these two reports:
 
-[code language="powershell"]  
-$SCCM\_SiteRoles\_ReportName = 'Site system roles and site system servers for a specific site'  
-$SCCM\_SiteStatus\_ReportName = 'Site status for the hierarchy'  
-[/code]
+```powershell
+$SCCM_SiteRoles_ReportName = 'Site system roles and site system servers for a specific site'  
+$SCCM_SiteStatus_ReportName = 'Site status for the hierarchy'  
+```
 
 - **<u>Adjust the following variable on line 9</u>** to the FQDN of your top level SCCM reporting server:
 
-[code language="powershell"]  
-$SCCM\_SSRS\_FQHostname = "SCCM-RP.domain.local"; # Central Administration Site reporting point  
-[/code]
-
+```powershell 
+$SCCM_SSRS_FQHostname = "SCCM-RP.domain.local"; # Central Administration Site reporting point  
+```
   
 **Some quick notes on the workings of the script** :
 
@@ -88,9 +89,9 @@ Zoomed out to 30% in Visio - the whole overview. 5 Primary sites and a CAS. ![SC
 
 Zoomed to about 70% so you can see each site system has the roles, IP and server name as the text box description below the shape: ![SCCM Visio Diagram 2]({{ site.baseurl }}/assets/images/sccm-visio-diagram-2.jpg)
 
-A short YouTube video of how things look as Visio is processing the shapes passed from the PowerShell script:┬á[Automatic Visio diagram video](https://youtu.be/5mBtPIQpDt0)
+A short YouTube video of how things look as Visio is processing the shapes passed from the PowerShell script: [Automatic Visio diagram video](https://youtu.be/5mBtPIQpDt0)
 
-Thanks to┬áJean-S├®bastien DUCH├èNE for the cool [SCCM Visio stencils](https://gallery.technet.microsoft.com/System-Center-Configuration-d67b8ac5).
+Thanks to Jean-Sébastien DUCHÊNE for the cool [SCCM Visio stencils](https://gallery.technet.microsoft.com/System-Center-Configuration-d67b8ac5).
 
 And again, huge thanks to **Ben Jones** ┬áfor his mathematical skills and converting these to .net/PowerShell to get the correct spacing for each shape.
 
