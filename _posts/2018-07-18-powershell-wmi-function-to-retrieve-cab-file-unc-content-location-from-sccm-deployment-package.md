@@ -81,6 +81,7 @@ From the update/deployment package in WMI, we can tell the top level folder of w
 The folder inside the PkgSourcePath is a unique guid. This comes from the **ContentID** of the update itself.  
 Finally the filename is easy to get. We pull the update from **SMS_CIContentFiles** and get the **.FileName** property.
 **Note:** The function should really be changed to pass the **$UpdatesFilter** as well. This would be very easy to do.
+
 ```powershell
 Function Get-SoftwareUpdatePath {
 param (
