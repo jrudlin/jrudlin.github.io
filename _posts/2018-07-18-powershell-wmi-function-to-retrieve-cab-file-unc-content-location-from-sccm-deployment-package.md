@@ -77,12 +77,10 @@ $MonthlyCUID = "4338819"
 ```
 
 5. The function that basically pieces together the path of the .cab file that was downloaded into your SCCM Deployment Package (could have been via an ADR or directly from the update/SUG).
-
- From the update/deployment package in WMI, we can tell the top level folder of where the package contents will be. This is **$UpdatePackage.PkgSourcePath.**  
- The folder inside the PkgSourcePath is a unique guid. This comes from the **ContentID** of the update itself.  
- Finally the filename is easy to get. We pull the update from **SMS_CIContentFiles** and get the **.FileName** property.
-
- **Note:** The function should really be changed to pass the┬á **$UpdatesFilter** as well. This would very easy to do.
+From the update/deployment package in WMI, we can tell the top level folder of where the package contents will be. This is **$UpdatePackage.PkgSourcePath.**  
+The folder inside the PkgSourcePath is a unique guid. This comes from the **ContentID** of the update itself.  
+Finally the filename is easy to get. We pull the update from **SMS_CIContentFiles** and get the **.FileName** property.
+**Note:** The function should really be changed to pass the **$UpdatesFilter** as well. This would very easy to do.
 
 ```powershell  
 Function Get-SoftwareUpdatePath {
