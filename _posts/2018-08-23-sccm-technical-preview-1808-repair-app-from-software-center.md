@@ -42,13 +42,10 @@ The agent version of the machine running the repair option from Software Center 
 
 So lets get started and see how this new feature is implemented from the SCCM Console and how the UX is from the users perspective in the Software Center.
 
-1. Update your existing Application, or create a new one. Add a repair program in.  
-  
+1. Update your existing Application, or create a new one. Add a repair program in.
 **Note:** You can usually find the ModifyPath of a an existing installed app from the Registry:
 > Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall
-However, beware this key represents a 'modify', so it would probably be interactive and may not be suitable for your silent repair.
-
-![SCCM Repair app 2]({{ site.baseurl }}/assets/images/sccm-repair-app-2.jpg)
+However, beware this key represents a 'modify', so it would probably be interactive and may not be suitable for your silent repair. ![SCCM Repair app 2]({{ site.baseurl }}/assets/images/sccm-repair-app-2.jpg)
 
 2. Deploy your Application that has the repair option. You can only deploy to a User collection. Tick the box to "**Allow end users to attempt to repair this application**"
 
