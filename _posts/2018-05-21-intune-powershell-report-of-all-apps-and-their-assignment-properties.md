@@ -39,7 +39,7 @@ I then kinda assumed I would be able to find a script already loaded in GitHub. 
 
 In SCCM, you can easily get a report of all Apps and where they are deployed or you can look at your collections and see which deployments are active. This isn't so easy in Intune. Time for the Microsoft Graph API and some PowerShell:
 
-90% of this work was already and is available here:┬á[Microsoft Graph examples on Github](https://github.com/microsoftgraph/powershell-intune-samples/tree/master/Applications)
+90% of this work was already and is available here: [Microsoft Graph examples on Github](https://github.com/microsoftgraph/powershell-intune-samples/tree/master/Applications)
 
 I just needed some fluff at the end to put it into a nice table and add a few missing properties along the way.
 
@@ -49,81 +49,72 @@ Pre-reqs:
 2. Intune read rights and read access to Azure AD groups
 3. Microsoft Intune Powershell app in AAA (script function creates this)
 
-Take the following 3 functions and the region authentication section from this script:┬á[Application\_Get\_Assign.ps1](https://github.com/microsoftgraph/powershell-intune-samples/blob/master/Applications/Application_Get_Assign.ps1) and paste them into your new PowerShell script.
+Take the following 3 functions and the region authentication section from this script: [Application\_Get\_Assign.ps1](https://github.com/microsoftgraph/powershell-intune-samples/blob/master/Applications/Application_Get_Assign.ps1) and paste them into your new PowerShell script.
 
-[code language="powershell"]  
-function Get-AuthToken  
-function Get-ApplicationAssignment  
-function Get-IntuneApplication  
-#region Authentication  
-[/code]
-
-Then, underneath the above functions, add the code to generate the report of all your Intune app assignments:
-
-[code language="powershell"]  
-# Retrieve all apps from the tenant  
-$apps = Get-IntuneApplication  
+```powershell
+# Retrieve all apps from the tenant
+$apps = Get-IntuneApplication
 Write-Host "Retrieved $($apps.count) apps" -ForegroundColor Green
-
-# Create a new array object  
+ 
+# Create a new array object
 $Output=New-Object System.Collections.ArrayList
-
-ForEach($App in $Apps){  
- Write-Host "`nGetting assignments for app: $($app.displayname)" -ForegroundColor Yellow  
- $AppID = $app.id
-
-$graphApiVersion = "Beta"  
- $Resource = "deviceAppManagement/mobileApps/$AppID/?`$expand=categories,assignments"  
- $uri = "https://graph.microsoft.com/$graphApiVersion/$($Resource)"
-
-$AppQuery = (invoke-RestMethod -Uri $uri ÔÇôHeaders $authToken ÔÇôMethod Get)
-
-If(($AppQuery.assignments -eq $null) -or ($AppQuery.assignments -eq "") -or ($AppQuery.assignments.count -lt 1)){
-
-Write-Host "No assignments for this app" -ForegroundColor Yellow
-
-} else {
-
-#Write-Host "Platform odata: $($AppQuery.'@odata.type')"
-
-# The many diff types of app in Intune, we switch the variable to the correct platform
-
-$Platform = switch -Wildcard ( $AppQuery.'@odata.type' )  
- {  
- \*androidForWorkApp\* { 'Android for Work' }  
- \*microsoftStoreForBusiness\* { 'Microsoft Store' }  
- \*iosVppApp\* { 'Apple VPP' }  
- \*windowsPhoneXAP\* { 'Windows Phone XAP'}  
- \*webApp\* { 'Web Link'}  
- default { 'Unknown' }  
- }
-
-ForEach($assignment in $AppQuery.assignments){  
- # Available or Required  
- write-host "Assignment intent: $($assignment.intent)"
-
-If ($($assignment.target.'@odata.type') -like "\*allLicensedUsersAssignmentTarget"){  
- Write-Host "Published to All Users"  
- $GroupName = "All Users"  
- } else {  
- # Lookup the AAD Group displayname  
- write-host "Group ID: $($assignment.target.GroupID)"  
- $GroupName = (Get-AzureADgroup -ObjectId $assignment.target.GroupID).DisplayName  
- }
-
-# Add all the properties into a new object in the array  
- Write-Host "Group Name: $GroupName"  
- $Output.Add( (New-Object -TypeName PSObject -Property @{"Name"="$($app.displayname)";"Group" = "$GroupName";"Assignment" = "$($assignment.intent)";"Platform" = "$Platform"} ) )
-
+ 
+ForEach($App in $Apps){
+    Write-Host "`nGetting assignments for app: $($app.displayname)" -ForegroundColor Yellow
+    $AppID = $app.id
+ 
+    $graphApiVersion = "Beta"
+    $Resource = "deviceAppManagement/mobileApps/$AppID/?`$expand=categories,assignments"
+    $uri = "https://graph.microsoft.com/$graphApiVersion/$($Resource)"
+ 
+    $AppQuery = (invoke-RestMethod -Uri $uri –Headers $authToken –Method Get)
+ 
+    If(($AppQuery.assignments -eq $null) -or ($AppQuery.assignments -eq "") -or ($AppQuery.assignments.count -lt 1)){
+ 
+            Write-Host "No assignments for this app" -ForegroundColor Yellow
+ 
+    } else {
+ 
+        #Write-Host "Platform odata: $($AppQuery.'@odata.type')"
+ 
+                # The many diff types of app in Intune, we switch the variable to the correct platform
+ 
+        $Platform = switch -Wildcard ( $AppQuery.'@odata.type' )
+        {
+            *androidForWorkApp* { 'Android for Work' }
+            *microsoftStoreForBusiness* { 'Microsoft Store' }
+            *iosVppApp* { 'Apple VPP' }
+            *windowsPhoneXAP* { 'Windows Phone XAP'}
+            *webApp* { 'Web Link'}
+            default { 'Unknown' }
+        }
+ 
+        ForEach($assignment in $AppQuery.assignments){
+            # Available or Required
+            write-host "Assignment intent: $($assignment.intent)"
+ 
+            If ($($assignment.target.'@odata.type') -like "*allLicensedUsersAssignmentTarget"){
+                Write-Host "Published to All Users"
+                $GroupName = "All Users"
+            } else {
+                # Lookup the AAD Group displayname
+                write-host "Group ID: $($assignment.target.GroupID)"
+                $GroupName = (Get-AzureADgroup -ObjectId $assignment.target.GroupID).DisplayName
+            }
+ 
+            # Add all the properties into a new object in the array
+            Write-Host "Group Name: $GroupName"
+            $Output.Add( (New-Object -TypeName PSObject -Property @{"Name"="$($app.displayname)";"Group" = "$GroupName";"Assignment" = "$($assignment.intent)";"Platform" = "$Platform"} ) )
+ 
+        }
+ 
+    }
+ 
 }
-
-}
-
-}
-
-# Format the column order by modifying the table output  
-$output | select Name,Group,Assignment,Platform  
-[/code]
+ 
+# Format the column order by modifying the table output
+$output | select Name,Group,Assignment,Platform
+```
 
 When you run the script, you will get console debug output during the script runtime:
 

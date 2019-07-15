@@ -72,17 +72,19 @@ $NameSpace = "root\SMS\Site\$sitecode"
 $UpdatesFilter = "LocalizedDisplayName like '%1803 for x64%' and articleid="  
 ```
 
-4. As explained by [@jarwidmark](https://twitter.com/jarwidmark) and [@miketerrill](https://twitter.com/miketerrill), a servicing stack update, an Adobe Flash update and the monthly Cumulative Update's are all required when servicing an offline Windows 10 WIM, so specify the ID's of these in the variables. (Note, you need to search online for these as Microsoft does not maintain a list of the latest Servicing Stack updates).
+- As explained by [@jarwidmark](https://twitter.com/jarwidmark) and [@miketerrill](https://twitter.com/miketerrill), a servicing stack update, an Adobe Flash update and the monthly Cumulative Update's are all required when servicing an offline Windows 10 WIM, so specify the ID's of these in the variables. (Note, you need to search online for these as Microsoft does not maintain a list of the latest Servicing Stack updates).
+
 ```powershell
 $ServicingUpdateID = "4343669"  
 $AdobeFlashUpdateID = "4338832"  
 $MonthlyCUID = "4338819"  
 ```
 
-5. The function that basically pieces together the path of the .cab file that was downloaded into your SCCM Deployment Package (could have been via an ADR or directly from the update/SUG).
+- The function that basically pieces together the path of the .cab file that was downloaded into your SCCM Deployment Package (could have been via an ADR or directly from the update/SUG).
 From the update/deployment package in WMI, we can tell the top level folder of where the package contents will be. This is **$UpdatePackage.PkgSourcePath.**  
 The folder inside the PkgSourcePath is a unique guid. This comes from the **ContentID** of the update itself.  
 Finally the filename is easy to get. We pull the update from **SMS_CIContentFiles** and get the **.FileName** property.
+
 **Note:** The function should really be changed to pass the **$UpdatesFilter** as well. This would be very easy to do.
 
 ```powershell
@@ -117,14 +119,16 @@ return $UpdateFullPath
 }  
 ```
 
-6. Run each line to return the UNC path of the .cab file.
+- Run each line to return the UNC path of the .cab file.
+
 ```powershell
 Get-SoftwareUpdatePath -UpdateArticleID $ServicingUpdateID  
 Get-SoftwareUpdatePath -UpdateArticleID $AdobeFlashUpdateID  
 Get-SoftwareUpdatePath -UpdateArticleID $MonthlyCUID  
 ```
 
-7. The output should look something like:
+- The output should look something like:
+
 ```powershell
 \\domain.local\packages\softwareupdates\win10\4668f609-e85c-4384-a758-6251918f1246\Windows10-KB4343669-x64.cab  
 \\domain.local\packages\softwareupdates\win10\edc45df9-43c7-4a48-8035-72557d2b598d\Windows10-KB4338832-x64.cab  

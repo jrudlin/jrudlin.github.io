@@ -40,23 +40,23 @@ Oh I spend so much time troubleshooting Lenovo's UpdateRetriever issues these da
 
 I run ThinInstaller during an SCCM Task Sequence so only noticed this post build - the Microsoft default display driver was installed instead of the Intel HD 620.
 
-The faulty Lenovo driver package is:┬á **n1ndt16w\_10**
+The faulty Lenovo driver package is: **n1ndt16w_10**
 
 The detection failure happens on an Lenovo ThinkPad P51s System Model **20HC** S12D00
 
-Intel HD Graphics 620 version:┬á **23.20.16.4905**
+Intel HD Graphics 620 version: **23.20.16.4905**
 
-Missing Hardware ID: **PCI\VEN\_8086&DEV\_5916&SUBSYS\_224817AA**
+Missing Hardware ID: **PCI\VEN_8086&DEV_5916&SUBSYS_224817AA**
 
-Open the┬á **n1ndt16w\_10** package in Update Retriever:
+Open the **n1ndt16w_10** package in Update Retriever:
 
 ![UpdateRetriever1]({{ site.baseurl }}/assets/images/updateretriever1.jpg)
 
-On the┬á **Define Dependencies** tab, add a new PNP ID:
+On the **Define Dependencies** tab, add a new PNP ID:
 
 ![UpdateRetriever2]({{ site.baseurl }}/assets/images/updateretriever2.jpg)
 
 When ThinInstaller runs again, it will be able to detect the Intel HD 620 is installed in the laptop and run this package installer.
 
-I found this issue by enabling debug in the┬á **ThinInstaller.exe.configuration** file located in the ThinInstaller directory. I saw that none of the PNP ID's matched.
+I found this issue by enabling debug in the **ThinInstaller.exe.configuration** file located in the ThinInstaller directory. I saw that none of the PNP ID's matched.
 
