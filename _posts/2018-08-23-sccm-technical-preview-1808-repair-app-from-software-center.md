@@ -45,22 +45,19 @@ So lets get started and see how this new feature is implemented from the SCCM Co
 1. Update your existing Application, or create a new one. Add a repair program in.
 **Note:** You can usually find the ModifyPath of a an existing installed app from the Registry:
 > Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall
-However, beware this key represents a 'modify', so it would probably be interactive and may not be suitable for your silent repair. ![SCCM Repair app 2]({{ site.baseurl }}/assets/images/sccm-repair-app-2.jpg)
+However, beware this key represents a 'modify', so it would probably be interactive and may not be suitable for your silent repair.
+![SCCM Repair app 2]({{ site.baseurl }}/assets/images/sccm-repair-app-2.jpg)
 
 2. Deploy your Application that has the repair option. You can only deploy to a User collection. Tick the box to "**Allow end users to attempt to repair this application**"
-
 ![SCCM Repair app 1]({{ site.baseurl }}/assets/images/sccm-repair-app-1.jpg)
 
 3. Jump onto your client as the user who you deployed the app to and install the deployed app. Once installed you will then see the new Repair option available.
-
 ![SCCM Repair app 3]({{ site.baseurl }}/assets/images/sccm-repair-app-3.jpg)
 
 4. Run the new Repair option to see it in action! The user will get a prompt with this warning:
-
 ![SCCM Repair app 4]({{ site.baseurl }}/assets/images/sccm-repair-app-4.jpg)
 
 5. Once the repair has finished, we can see from the AppEnforce.log that the repair cmd has successfully run:
-
 ![SCCM Repair app 5]({{ site.baseurl }}/assets/images/sccm-repair-app-5.jpg)
 
 6. Thanks, and enjoy. I told you it was a quick one
