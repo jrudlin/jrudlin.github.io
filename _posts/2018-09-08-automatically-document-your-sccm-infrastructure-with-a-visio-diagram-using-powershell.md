@@ -93,7 +93,7 @@ A short YouTube video of how things look as Visio is processing the shapes passe
 
 Thanks to Jean-Sébastien DUCHÊNE for the cool [SCCM Visio stencils](https://gallery.technet.microsoft.com/System-Center-Configuration-d67b8ac5).
 
-And again, huge thanks to **Ben Jones** ┬áfor his mathematical skills and converting these to .net/PowerShell to get the correct spacing for each shape.
+And again, huge thanks to **Ben Jones** for his mathematical skills and converting these to .net/PowerShell to get the correct spacing for each shape.
 
 Any questions please ping me on Twitter [@JackRudlin](https://twitter.com/jackrudlin)
 
