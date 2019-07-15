@@ -128,7 +128,7 @@ When the script runs on the SCCM Site Server, it actually connects to each of th
 Top level WSUS detection:
 
 ```powershell
-$TopTierWsus = Get-CMSoftwareUpdateSyncStatus | Where-Object -FilterScript {$_.WSUSSourceServer -like "\*Microsoft Update\*" -and $_.SiteCode -eq $SiteCode} | Select-Object -Unique -ExpandProperty WSUSServerName
+$TopTierWsus = Get-CMSoftwareUpdateSyncStatus | Where-Object -FilterScript {$_.WSUSSourceServer -like "*Microsoft Update*" -and $_.SiteCode -eq $SiteCode} | Select-Object -Unique -ExpandProperty WSUSServerName
 ```
 
 As per [https://blogs.technet.microsoft.com/meamcs/2018/10/09/resolving-wsus-performance-issues](https://blogs.technet.microsoft.com/meamcs/2018/10/09/resolving-wsus-performance-issues/) the script now also configures the minimum values for:
@@ -139,7 +139,7 @@ As per [https://blogs.technet.microsoft.com/meamcs/2018/10/09/resolving-wsus-per
 # WSUS IIS AppPool Variables  
 
 ```powershell
-$WSUSSiteNameFilter = "WSUS\*"  
+$WSUSSiteNameFilter = "WSUS*"  
 $IISAppPoolQueueMinSize = 2000  
 $IISAppPoolMemoryMinSize = 4194304  
 $ISSWebAdminModuleNAme = "WebAdministration"
@@ -155,7 +155,7 @@ If(-not(get-module -Name $ISSWebAdminModuleNAme)){
 
 If($IISModule){
 
-$WebSite = Get-Website | Where-Object -FilterScript {$\_.Name -like $WSUSSiteNameFilter}  
+$WebSite = Get-Website | Where-Object -FilterScript {$_.Name -like $WSUSSiteNameFilter}  
  If(-not($WebSite)){Add-TextToCMLog -LogFile $LogFile -Value "Could not find IIS website using filter '$WSUSSiteNameFilter'. Skipping IIS config" -Component $component -Severity 3}
 
 $WSUSAppPoolName = $WebSite.applicationPool
