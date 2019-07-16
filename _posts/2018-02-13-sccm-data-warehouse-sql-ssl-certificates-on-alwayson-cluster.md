@@ -37,9 +37,10 @@ I was setting up the new Data Warehouse feature of SCCM on our corporate SQL 201
 
 You will notice that after you have installed the DW and try to run a report, you may get this error:
 
-_An error has occurred during report processing. (rsProcessingAborted) Cannot create a connection to data source ÔÇÿAutoGen\_\_39B693BB\_524B\_47DF\_9FDB\_9000C3118E82\_ÔÇÖ. (rsErrorOpeningConnection) A connection was successfully established with the server, but then an error occurred during the pre-login handshake. (provider: SSL Provider, error: 0 ÔÇô The certificate chain was issued by an authority that is not trusted.)_
+> An error has occurred during report processing. (rsProcessingAborted) Cannot create a connection to data source ‘AutoGen__39B693BB_524B_47DF_9FDB_9000C3118E82_’. (rsErrorOpeningConnection) A connection was successfully established with the server, but then an error occurred during the pre-login handshake. (provider: SSL Provider, error: 0 – The certificate chain was issued by an authority that is not trusted.)
 
-The Data Warehouse reporting data source has this parameter:┬á_TrustServerCertificate=false_
+The Data Warehouse reporting data source has this parameter:
+> TrustServerCertificate=false
 
 You can change this to true - but it will get set back to false by SCCM :)
 
@@ -53,34 +54,33 @@ The SQL **instance** where the Data Warehouse database exists will likely have \
 
 I ran this PowerShell on each of the 3 SQL nodes to request a unique certificate.
 
-[code language="powershell"]  
+```powershell
 # Create and submit a request  
 $Hostname = [System.Net.Dns]::GetHostByName(($env:computerName)).Hostname  
 $template = "WebServer2008"  
 $SAN = $Hostname,"AGL1-INSTANCE1","AGL1-INSTANCE1.domain.local","AGL2-INSTANCE1","AGL2-INSTANCE1.domain.local","AGL3-INSTANCE1","AGL3-INSTANCE1.domain.local","AGL4-INSTANCE1","AGL4-INSTANCE1.domain.local"  
 Get-Certificate -Template $template -DnsName $SAN -CertStoreLocation cert:\LocalMachine\My
-
-[/code]
+```
 
 Now, hop onto your issuing CA and approve the pending request for the certificate.
 
 Back on the SQL nodes, retrieve the requested certificate from the CA. It will be installed into the machines Personal store.
 
-[code language="powershell"]  
+```powershell
 # Now the certificate is approved, you can retrieve the request:  
 Get-Certificate -Request (Get-ChildItem -Path cert:\LocalMachine\Request)  
-[/code]
+```
 
 Open an MMC and add the Certificates snap-in targeted at the local computer store. Find the newly installed certificate (The one with the above SANs in it) and retrieve the certificate thumbprint.
 
 On each of the SQL Nodes, change the following registry value so that it matches the thumbprint of the newly approved certificate:
 
-[code language="java"]  
+```windows registry entries
 Windows Registry Editor Version 5.00
 
-[HKEY\_LOCAL\_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\MSSQL13.INSTANCE1\MSSQLServer\SuperSocketNetLib]  
-"Certificate"="25615102f32108599d89555678e7fcdabb0db491"  
-[/code]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\MSSQL13.INSTANCE1\MSSQLServer\SuperSocketNetLib]  
+"Certificate"="25615102f32108599d89555678e7fcdabb0db491"
+```
 
 The SQL Server service for the instance will need restarting following this Registry update.
 
