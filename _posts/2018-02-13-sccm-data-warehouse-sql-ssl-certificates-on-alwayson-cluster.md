@@ -75,7 +75,7 @@ Open an MMC and add the Certificates snap-in targeted at the local computer stor
 
 On each of the SQL Nodes, change the following registry value so that it matches the thumbprint of the newly approved certificate:
 
-```windows registry entries
+```batchfile
 Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\MSSQL13.INSTANCE1\MSSQLServer\SuperSocketNetLib]  
