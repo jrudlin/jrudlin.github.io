@@ -27,9 +27,7 @@ author:
   last_name: ''
 permalink: "/2017/10/31/resize-azure-vm-vhd-blob-to-smaller-disk-size-downsize/"
 ---
-Hi Guys,
-
-I haven't had much time recently as I have been doing a lot of Business As Usual support and helping deploy the solution I previously mentioned which was loosely based on native VDI in Azure (I will blog about this in the near future).
+I haven't had much time recently as I have been doing a lot of Business As Usual support and helping deploy the solution I previously mentioned which was loosely based on native VDI in Azure.
 
 Something that came out of that project was the ability to downsize a VHD in Azure without copying it back to on-premise and using 3rd party tools.
 
@@ -37,8 +35,7 @@ The Windows 10 images from the Azure market place come at the standard size of 1
 
 First create an empty disk against any existing Windows VM you have in Azure:
 
-[code language="powershell"]
-
+```powershell
 # This creates an empty 32GB disk against an existing VM in an existing Resource Group  
 $VMName = "vm-resize-disk"  
 $RGName = "rg-resize-disk"  
@@ -67,13 +64,12 @@ Update-AzureRmVM -ResourceGroupName $RGName -VM $VM
 Write-Host "Removing empty disk from VM $VMName..."  
 Remove-AzureRmVMDataDisk -VM $VM -DataDiskNames "$($VMName)-empty"  
 Update-AzureRmVM -ResourceGroupName $RGName -VM $VM
-
-[/code]
+```
 
 Next, we will use the empty disk set as 32GB, to resize the existing osdisk of the VM.  
 It goes without saying, the VM must be shutdown and deallocated first and also make sure you have shrunk the disk size in Windows to 32GB or below:
 
-[code language="powershell"]
+```powershell
 
 # Change the -osdisk VHD file to new size (32GB)  
 # Note: make sure you have shrunk the disk from Windows to 32GB or below first  
@@ -111,12 +107,8 @@ $osDisk.ICloudBlob.WritePages($footerStream, $emptyDisk.Length - 512)
 
 #write-output "Deleting empty disk VHD"  
 #Remove-AzureStorageBlob -Context $StoreContext -Container $contain.Name -Blob "$($VMName)-empty.vhd"
-
-[/code]
-
-┬á
+```
 
 Massive thanks to [@rupertbenbrook](https://twitter.com/rupertbenbrook) for pretty much all of this great and very useful code.
 
-Note: Please check with Microsoft support before implementing this in a production environment if you want to be sure it is a fully supported way of changing VHD sizes.
-
+**Note:** Please check with Microsoft support before implementing this in a production environment if you want to be sure it is a fully supported way of changing VHD sizes.

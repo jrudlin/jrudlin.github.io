@@ -31,21 +31,20 @@ permalink: "/2017/06/23/sql-backup-to-url-azure-blob-behind-authenticated-proxy-
 ---
 If you want to use SQL 2012 or above to backup directly to a URL and your servers are behind a corporate proxy that also requires auth, create the following .net config file so that the sql service will make the connection correctly:
 
-c:\Program Files\Microsoft SQL Server\MSSQL11.MSSQLSERVER\MSSQL\Binn\ **BackuptoURL.exe.config**
+c:\Program Files\Microsoft SQL Server\MSSQL11.MSSQLSERVER\MSSQL\Binn\\**BackuptoURL.exe.config**
 
 Add the following code with your proxy address to the new file:
 
-[code language="xml"]  
-\<?xml version ="1.0"?\>  
-\<configuration\>  
- \<system.net\>  
- \<defaultProxy\>  
- \<proxy proxyaddress="http://proxylb.domain.local:8080" bypassonlocal="true" usesystemdefault="True" /\>  
- \<bypasslist\>  
- \<add address="[a-z]+.domain.local$" /\>  
- \</bypasslist\>  
- \</defaultProxy\>  
- \</system.net\>  
-\</configuration\>  
-[/code]
-
+```xml
+<?xml version ="1.0"?>
+<configuration>
+  <system.net>
+    <defaultProxy>
+      <proxy  proxyaddress="http://proxylb.domain.local:8080" bypassonlocal="true" usesystemdefault="True" />
+      <bypasslist>
+        <add address="[a-z]+.domain.local$" />
+      </bypasslist>
+    </defaultProxy>
+  </system.net>
+</configuration>
+```
