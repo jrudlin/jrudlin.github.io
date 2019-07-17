@@ -5,7 +5,7 @@ permalink: /about/
 ---
 
 A technical architect/consultant specialising in Azure and end-user computing, Office 365, Intune MDM, Windows 10 and SCCM.
-Primarily focused on Microsoft cloud adoption, migration and operation.
+Primarily focused on Microsoft cloud adoption, security, migration and operation.
 
 ## Key skills
 
