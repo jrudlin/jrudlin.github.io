@@ -125,5 +125,5 @@ For more information about this issue, see
 
 Result:
 
-![RDCustom2]({{ site.baseurl }}/assets/images/rdcustom2.jpg) ![RDCustom3]({{ site.baseurl }}/assets/images/rdcustom3.jpg)
-
+![RDCustom2]({{ site.baseurl }}/assets/images/rdcustom2.jpg)
+![RDCustom3]({{ site.baseurl }}/assets/images/rdcustom3.jpg)
