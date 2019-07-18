@@ -82,7 +82,7 @@ In the **C:\Windows\Web\RDWeb\Pages\en-US\RDWAStrings.xml** file add a new secti
 
 Result:
 
-![RDCustom1]({{ site.baseurl }}/assets/images/rdcustom1-e1496761527670.jpg?w=300)
+![RDCustom1]({{ site.baseurl }}/assets/images/rdcustom1.jpg)
 
 ## Changing the default rap-help.htm page
 
