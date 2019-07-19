@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Date created' for all resources in Azure using Tags and Policy
+title: CreatedOnDate tag for all resources in Azure using Azure Policy
 date: 2019-07-18 20:47:55.000000000 +00:00
 type: post
 parent_id: '0'
