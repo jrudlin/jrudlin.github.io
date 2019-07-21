@@ -1,7 +1,7 @@
 ---
 layout: post
 title: CreatedOnDate tag for all resources in Azure using Azure Policy
-subtitle: Resources and objects in Azure don't contain a **created on date** property, this post will help you use Tags and Azure Policy to resolve that.
+subtitle: Resources and objects in Azure don't contain a created on date property, this post will help you use Tags and Azure Policy to resolve that.
 date: 2019-07-18 20:47:55.000000000 +00:00
 type: post
 parent_id: '0'
@@ -21,11 +21,12 @@ author:
   login: jrudlingmailcom
   email: jrudlin@gmail.com
   display_name: jrudlin
-  first_name: ''
-  last_name: ''
+  first_name: 'Jack'
+  last_name: 'Rudlin'
 ---
-Resources and objects in Azure don't contain a **created on date** property, this post will help you use Tags and Azure Policy to resolve that.
+
 ![CreatedOnDate]({{ site.baseurl }}/assets/images/Azure-Tag-CreatedOnDate-1.png)
+
 By using Azure Policy we will implement a **Policy** that applies to all resources, including Resource Groups, that automatically creates a **CreatedOnDate** Tag when the resource is created.
 
 ## Date Created - Why?
