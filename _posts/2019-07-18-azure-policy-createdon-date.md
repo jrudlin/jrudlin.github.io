@@ -2,7 +2,7 @@
 layout: post
 title: CreatedOnDate tag for all resources in Azure using Azure Policy
 subtitle: Resources and objects in Azure don't contain a created on date property, this post will help you use Tags and Azure Policy to resolve that.
-share-img: ({{ site.baseurl }}/assets/images/Azure-Tag-CreatedOnDate-1.png)
+share-img: "assets/images/Azure-Tag-CreatedOnDate-1.png"
 date: 2019-07-18 20:47:55.000000000 +00:00
 type: post
 parent_id: '0'
