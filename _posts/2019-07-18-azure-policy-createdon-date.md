@@ -127,7 +127,7 @@ When a resource is created in Azure, it will automatically be tagged with a **Cr
 
 ## How can I use it?
 
-Simple, the Az PowerShell Module:
+Simple method, the Az PowerShell Module:
 
 ```powershell
 Install-Module -Name Az -AllowClobber
@@ -135,3 +135,6 @@ Connect-AzAccount
 $TagName = "CreatedOnDate"
 Get-AzResource -TagName $TagName
 ```
+
+Slightly more complex, using an Azure Automation runbook with a SendGrid email account to produce a daily report of all new resources and their costs:
+[Get-RecentAzResource.ps1](https://github.com/jrudlin/Azure/blob/master/General/Get-RecentAzResource.ps1)
