@@ -13,11 +13,15 @@ categories:
 - Azure
 - Tags
 - Policy
+- PowerShell
+- JSON
 tags:
 - Azure
 - Tags
 - Policy
 - CreatedOnDate
+- PowerShell
+- JSON
 author:
   login: jrudlingmailcom
   email: jrudlin@gmail.com

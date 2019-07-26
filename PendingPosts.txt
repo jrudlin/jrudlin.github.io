@@ -1,0 +1,11 @@
+Simple Intune WinAppUtil package wrapper
+Deploying Office/Visio/Project interactively in Intune
+CI/CD Pipeline for WVD
+Dell BIOS passwords with Intune
+Always use latest ODT setup.exe when installing Office Visio/Project through Intune.
+Interactive Office install with Intune and PSADT
+Intune Compliance script
+Intune / Choco app upgrades with PSADT
+Intune login script / AD Groups
+Rename Teamviewer devices based on Intune primary user
+Managing external Guests with automation and Access Reviews
