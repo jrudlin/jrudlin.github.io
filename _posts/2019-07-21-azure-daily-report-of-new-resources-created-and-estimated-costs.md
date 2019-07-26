@@ -2,8 +2,8 @@
 layout: post
 title: Daily email report of all new Azure resources created, their owner/creator, and estimated cost.
 subtitle: Management type email report (costs and user who created all new resources within a timeframe) using Azure Automation runbooks, PowerShell and SendGrid.
-share-img: "assets/images/Azure-Tag-CreatedOnDate-1.png"
-date: 2019-07-21 20:47:55.000000000 +00:00
+share-img: "assets/images/RecentAzResouce1.png"
+date: 2019-07-26 20:47:55.000000000 +00:00
 type: post
 parent_id: '0'
 published: true
