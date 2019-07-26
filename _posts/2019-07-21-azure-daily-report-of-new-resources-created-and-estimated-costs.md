@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Daily email report of all new Azure resources created, their owner/creator, and estimated cost.
-subtitle: Management type report (costs and user who created all new resources within a timeframe) using Azure Automation runbooks and SendGrid.
+subtitle: Management type email report (costs and user who created all new resources within a timeframe) using Azure Automation runbooks, PowerShell and SendGrid.
 share-img: "assets/images/Azure-Tag-CreatedOnDate-1.png"
 date: 2019-07-21 20:47:55.000000000 +00:00
 type: post
@@ -13,11 +13,16 @@ categories:
 - Azure
 - Automation
 - PowerShell
+- SendGrid
 tags:
 - Azure
 - Tags
 - Policy
 - CreatedOnDate
+- Costs
+- Script
+- PowerShell
+- Email
 author:
   login: jrudlingmailcom
   email: jrudlin@gmail.com
@@ -49,6 +54,13 @@ Create a SendGrid account in Azure, if you don't already have one. I'm using the
 ### Azure Automation Runbook - Email-SendGrid
 I'm using a Runbook for SendGrid that can be re-used by providing parameters from another Runbook, so it's not limited to just this solution.
 
+Retrieve the username from your SendGrid account:
+![CreatedOnDate]({{ site.baseurl }}/assets/images/RecentAzResouce7.png)
+
+Use this username, and the password you set when creating the SendGrid account, to create credentials in the Azure Automation account:
+![CreatedOnDate]({{ site.baseurl }}/assets/images/RecentAzResouce3.png)
+![CreatedOnDate]({{ site.baseurl }}/assets/images/RecentAzResouce4.png)
+
 Create a new Runbook in your Automation Account, called Email-SendGrid
 ![CreatedOnDate]({{ site.baseurl }}/assets/images/RecentAzResouce2.png)
 
@@ -57,17 +69,11 @@ Paste the code from [Email-SendGrid.ps1](https://github.com/jrudlin/Azure/blob/m
 Modify the following variables in the script:
 
 ```powershell
-$SendGridAdminAccount = "SendGridAlertsProd1"
-...
+# The name of you SendGrid credentials stored in the Automation Account
+$SendGridAdminAccount = "SendGridAlertsProd"
+
 $EmailFrom = "AzureAlerts@jrudlin.org.uk"
 ```
-
-Retrieve the username from your SendGrid account:
-![CreatedOnDate]({{ site.baseurl }}/assets/images/RecentAzResouce7.png)
-
-Use this username, and the password you set when creating the SendGrid account, to create credentials in the Azure Automation account:
-![CreatedOnDate]({{ site.baseurl }}/assets/images/RecentAzResouce3.png)
-![CreatedOnDate]({{ site.baseurl }}/assets/images/RecentAzResouce4.png)
 
 ### Azure Automation Runbook - Get-RecentAzResource
 Modules you'll need to install in your Automation account:
@@ -78,7 +84,7 @@ Modules you'll need to install in your Automation account:
 - Az.Monitor
 - Az.Resources
 
-As mentioned above, you need the [CreatedOnDate tag](/2019-07-18-azure-policy-createdon-date)) Azure Policy in place first.
+As mentioned above, you need the [CreatedOnDate tag](/2019-07-18-azure-policy-createdon-date) Azure Policy in place first.
 
 Grab a copy of the [Get-RecentAzResource.ps1](https://github.com/jrudlin/Azure/blob/master/General/Get-RecentAzResource.ps1) script and drop it into another new Automation Runbook.
 
