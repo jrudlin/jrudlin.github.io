@@ -39,11 +39,11 @@ If you use the IntuneWinAppUtil.exe [content prep tool](https://github.com/Micro
 Drop the [Package-IntuneApp.ps1](https://github.com/jrudlin/Intune/blob/master/Package-IntuneApp.ps1) into the root of your packaging directory structure, mine looks like this:
 
 - OneDrive\Packages
- - Packages\Microsoft-AzureStorageExplorer
- - Packages\Chocolatey-Free
- - Packages\DNSFilter-Win10-Agent
- - Packages\Python
- - Packages\Package-IntuneApp.ps1
+  - Packages\Microsoft-AzureStorageExplorer
+  - Packages\Chocolatey-Free
+  - Packages\DNSFilter-Win10-Agent
+  - Packages\Python
+  - Packages\Package-IntuneApp.ps1
 
 ```powershell
 .\Package-IntuneApp.ps1 -SourceFolder .\Microsoft-AzureStorageExplorer\ -SetupFile Install-AzStorageExplorer-Choco.ps1
