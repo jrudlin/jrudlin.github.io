@@ -51,9 +51,10 @@ Drop the [Package-IntuneApp.ps1](https://github.com/jrudlin/Intune/blob/master/P
 
 Specify the _-SourceFolder_ (The package folder containing your installation binaries/scripts) and the _-SetupFile_ which is the file Intune will run on the endpoint to start the installation.
 
-You an also specify the _-OutPutFolder directory if you want to change it from the default **_Output** folder.
+You an also specify the _-OutPutFolder_ directory if you want to change it from the default **_Output** folder.
 
 ![CreatedOnDate]({{ site.baseurl }}/assets/images/Package-IntuneApp2.png)
+
 ![CreatedOnDate]({{ site.baseurl }}/assets/images/Package-IntuneApp3.png)
 
 That's all folks!

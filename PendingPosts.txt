@@ -1,4 +1,3 @@
-Simple Intune WinAppUtil package wrapper
 Deploying Office/Visio/Project interactively in Intune
 CI/CD Pipeline for WVD
 Dell BIOS passwords with Intune
