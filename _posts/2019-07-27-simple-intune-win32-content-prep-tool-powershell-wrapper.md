@@ -2,7 +2,7 @@
 layout: post
 title: Simple PowerShell wrapper for the Intune Win32 Content Prep tool exe
 subtitle: Super simple PowerShell script/wrapper for the IntuneWinAppUtil.exe content prep tool to speed up your Intune packaging pipeline
-share-img: "assets/images/Package-IntuneApp1.png.png"
+share-img: "assets/images/Package-IntuneApp1.png"
 date: 2019-07-27 20:47:55.000000000 +00:00
 type: post
 parent_id: '0'
