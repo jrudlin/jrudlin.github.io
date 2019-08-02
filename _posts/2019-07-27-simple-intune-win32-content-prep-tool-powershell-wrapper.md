@@ -49,7 +49,7 @@ Drop the [Package-IntuneApp.ps1](https://github.com/jrudlin/Intune/blob/master/P
 .\Package-IntuneApp.ps1 -SourceFolder .\Microsoft-AzureStorageExplorer\ -SetupFile Install-AzStorageExplorer-Choco.ps1
 ```
 
-Specify the _-SourceFolder_ (The package folder containing your installation binaries/scripts) and the _-SetupFile_ which is the file Intune will run on the endpoint to start the installation.
+Specify the `-SourceFolder` (The package folder containing your installation binaries/scripts) and the `-SetupFile` which is the file Intune will run on the endpoint to start the installation.
 
 You an also specify the `-OutPutFolder` directory if you want to change it from the default **_Output** folder.
 

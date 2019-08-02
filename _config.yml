@@ -101,7 +101,7 @@ url-pretty: "jrudlin.github.io"
 #gtag: ""
 
 # Fill in your Google Analytics ID to track your website using GA
-google_analytics:
+google_analytics: UA-145067864-1
 
 # Google Tag Manager ID
 #gtm: ""
@@ -119,7 +119,7 @@ google_analytics:
 
 # Fill in your Disqus shortname (NOT the userid) if you want to support Disqus comments
 # You can find your shortname on the Settings page of your Disqus account
-disqus:
+disqus: jackrudlin
 
 # --- Misc --- #
 
