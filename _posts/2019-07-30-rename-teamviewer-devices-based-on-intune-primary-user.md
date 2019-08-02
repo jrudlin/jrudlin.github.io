@@ -9,6 +9,7 @@ parent_id: '0'
 published: true
 password: ''
 status: publish
+comments: true
 categories:
 - TeamViewer
 - Intune
@@ -37,7 +38,7 @@ PowerShell script with functions that append the devices' [primary user] (retrie
 
 By default, when a device is registered in the TeamViewer portal by deploying the msi (through Intune of course) it doesn't contain any information regarding the primary (or any other) _user of the device_. Generally, the end user will not know the name of their device and the IT Service Desk would prefer to search by the users' name rather than device.
 
-By scheduling an Azure Automation script that uses the TeamViewer and Intune Graph API, we can append a [User Name] to the device so it looks like: `Lap-Win10-1 [Jack Rudlin]`
+By scheduling an Azure Automation script that uses the TeamViewer and Intune Graph API, we can append a `[User Name]` to the device so it looks like: `Lap-Win10-1 [Jack Rudlin]`
 
 See below on how to set things up.
 
