@@ -9,7 +9,6 @@ parent_id: '0'
 published: true
 password: ''
 status: publish
-comments: true
 categories:
 - TeamViewer
 - Intune
