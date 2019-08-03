@@ -31,7 +31,7 @@ author:
 
 ![CreatedOnDate]({{ site.baseurl }}/assets/images/rename-teamviewer-device1.png)
 
-PowerShell script with functions that append the devices' [primary user] (retrieved from Intune) to the device name in the Teamviewer portal.
+PowerShell script with functions that append the devices' **[primary user]** _(retrieved from Intune)_ to the **device name** in the **Teamviewer portal**.
 
 ## TeamViewer Portal
 
@@ -63,7 +63,7 @@ Give the token a name, description and **edit** access to **Computers**:
 
 ![CreatedOnDate]({{ site.baseurl }}/assets/images/rename-teamviewer-device5.png)
 
-Make a note of the variable - however it can always be retrieved later by editing the token:
+Make a note of the token - however it can always be retrieved later by editing the token:
 
 ![CreatedOnDate]({{ site.baseurl }}/assets/images/rename-teamviewer-device6.png)
 
@@ -112,6 +112,10 @@ Or this from a shell:
 
 `true` is returned when a TeamViewer device is succesfully renamed.
 
-The result looks like this from the TeamViewer portal and allows **simple search by users name** from the bar in the top right:
+The result looks like this from the TeamViewer portal:
 
 ![CreatedOnDate]({{ site.baseurl }}/assets/images/rename-teamviewer-device1.png)
+
+and allows **simple search by users name** from the bar in the top right:
+
+![CreatedOnDate]({{ site.baseurl }}/assets/images/rename-teamviewer-device9.png)
