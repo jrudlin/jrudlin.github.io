@@ -55,7 +55,7 @@ Grab a copy of the [login script](https://github.com/jrudlin/Intune/blob/master/
 
 ### Login Script
 
-In the [login script](https://github.com/jrudlin/Intune/blob/master/Win10-Login-Script.ps1) change the global variables in the **Declarations** section at the top to your liking probably the only ones you'll need to change are:
+In the [login script](https://github.com/jrudlin/Intune/blob/master/Win10-Login-Script.ps1) change the global variables in the **Declarations** section at the top to your liking - probably the only ones you'll need to change are:
 
 ```powershell
 $OneDriveFolder = "OneDrive - Org Name"
@@ -82,9 +82,9 @@ It larger environments it may cause undesired load on the Domain Controllers so 
 
 Logging will be into the users' %temp% folder: **Win10-Login-Script.log**
 
-### Invoke-Login Script
+## Invoke-Login Script
 
-## Azure blob storage
+### Azure blob storage
 
 Setup, or use an existing storage account to host the login script in blob storage. V2, LRS, Hot:
 ![CreatedOnDate]({{ site.baseurl }}/assets/images/intune-win10-login-script2.png)
@@ -95,14 +95,19 @@ Create a new container in blob storage with public access level:
 Upload the [login script](https://github.com/jrudlin/Intune/blob/master/Win10-Login-Script.ps1) and copy its URL
 ![CreatedOnDate]({{ site.baseurl }}/assets/images/intune-win10-login-script4.png)
 
-## Invoke-Login Script URL
+### Invoke-Login Script URL
 
 Amend the `$Azure_Blog_Storage_Script_Url` variable in the [invoke-login script](https://github.com/jrudlin/Intune/blob/master/Invoke-Win10-Login-Script.ps1)
 
-## Intune
+### Intune
 
 Deploy your amended invoke-login script using Intune. I went with a simple PowerShell Script item, but you could use a Win32 app with a detection method to increase compliance.
 **Don't** deploy using the logged on credentials.
 
 ![CreatedOnDate]({{ site.baseurl }}/assets/images/intune-win10-login-script5.png)
 
+## Conclusion
+
+Once the Invoke script is deployed, on the next login of any user, the users' drives should be mapped and appear as they used to (on Windows 7 domain joined / Citrix).
+This works because of [Azure AD Connect and AAD](https://docs.microsoft.com/en-us/azure/active-directory/devices/azuread-join-sso): _Azure AD sends the name of the on-premises domain the user is a member of back to the device._
+Oh, and it also maps to on-prem print queues, but this works natively without any additional .net tricks :wink:
