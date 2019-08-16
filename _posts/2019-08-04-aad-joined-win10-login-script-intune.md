@@ -103,4 +103,6 @@ Amend the `$Azure_Blog_Storage_Script_Url` variable in the [invoke-login script]
 
 Deploy your amended invoke-login script using Intune. I went with a simple PowerShell Script item, but you could use a Win32 app with a detection method to increase compliance.
 **Don't** deploy using the logged on credentials.
+
 ![CreatedOnDate]({{ site.baseurl }}/assets/images/intune-win10-login-script5.png)
+
