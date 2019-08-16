@@ -1,4 +1,4 @@
-Rename Teamviewer devices based on Intune primary user
+Intune login script / AD Groups
 Deploying Office/Visio/Project interactively in Intune
 CI/CD Pipeline for WVD
 Dell BIOS passwords with Intune
@@ -6,5 +6,4 @@ Always use latest ODT setup.exe when installing Office Visio/Project through Int
 Interactive Office install with Intune and PSADT
 Intune Compliance script
 Intune / Choco app upgrades with PSADT
-Intune login script / AD Groups
-Managing external Guests with automation and Access Reviews
+Managing external Guests with automation and Access Review
