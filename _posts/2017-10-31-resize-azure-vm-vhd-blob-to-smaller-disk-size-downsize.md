@@ -1,6 +1,7 @@
 ---
 layout: post
-title: Resize Azure VM VHD blob to smaller disk size (downsize)
+title: Shrink Azure VM OS disk size (reduce)
+subtitle: Reducing the OS (or data) Disk size for Azure Virtual Machines using PowerShell
 date: 2017-10-31 16:04:29.000000000 +00:00
 type: post
 parent_id: '0'
@@ -13,6 +14,9 @@ categories:
 tags:
 - Blob storage
 - resize
+- shrink
+- reduce
+- OS disk
 - storage account
 - VHD
 meta:
@@ -27,11 +31,10 @@ author:
   last_name: ''
 permalink: "/2017/10/31/resize-azure-vm-vhd-blob-to-smaller-disk-size-downsize/"
 ---
-I haven't had much time recently as I have been doing a lot of Business As Usual support and helping deploy the solution I previously mentioned which was loosely based on native VDI in Azure.
 
-Something that came out of that project was the ability to downsize a VHD in Azure without copying it back to on-premise and using 3rd party tools.
+To optimise the cost of VMs running in Azure, the ability to downsize a VHD in Azure without copying it back on-prem or using 3rd party tools was essential.
 
-The Windows 10 images from the Azure market place come at the standard size of 128GB, which too big for a basic Win10 VM used for VDI.
+The Windows 10 images from the Azure market place come at the standard size of 128GB, which is too big for a basic Win10 VM used for VDI.
 
 First create an empty disk against any existing Windows VM you have in Azure:
 
