@@ -41,11 +41,11 @@ In order of preference, these are the Azure based storage options for FSLogix pr
 
 ## Storage Options
 ### 1. Azure File Share (SMB) - Computer Auth
-..* Create an [Azure Premium File Share](https://docs.microsoft.com/en-us/azure/storage/files/storage-how-to-create-premium-fileshare)
-..* Get the [cmdkey to access the file share](https://docs.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-windows)
-..* Add the above storage credentials to the Windows Credential Manager as the SYSTEM account
-..* Set the FSLogix Registry value `AccessNetworkAsComputerObject` to `1`
-..* Set the FSLogix Registry value `VHDLocations` to the UNC path of the Azure File Share
+ * Create an [Azure Premium File Share](https://docs.microsoft.com/en-us/azure/storage/files/storage-how-to-create-premium-fileshare)
+ * Get the [cmdkey to access the file share](https://docs.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-windows)
+ * Add the above storage credentials to the Windows Credential Manager as the SYSTEM account
+ * Set the FSLogix Registry value `AccessNetworkAsComputerObject` to `1`
+ * Set the FSLogix Registry value `VHDLocations` to the UNC path of the Azure File Share
 
 This is the most cost effective solution with excellent performance. It is also the simplest and quickest to setup and requires the least amount of infrastructure.
 
