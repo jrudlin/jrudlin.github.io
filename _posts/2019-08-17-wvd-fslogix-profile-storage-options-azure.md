@@ -31,8 +31,6 @@ author:
   last_name: 'Rudlin'
 ---
 
-The different types of storage options when using FSLogix and WVD in Azure.
-
 # FSLogix
 
 FSlogix is essentially a roaming profile solution for Windows based on VHD(x) files.
