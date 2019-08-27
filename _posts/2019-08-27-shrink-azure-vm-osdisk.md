@@ -29,7 +29,7 @@ author:
   last_name: 'Rudlin'
 ---
 
-![CreatedOnDate]({{ site.baseurl }}/assets/images/intune-win10-login-script1.png)
+![Existing Disk]({{ site.baseurl }}/assets/images/shrink-azure-vm-osdisk1.png)
 
 Using PowerShell (and the Azure Portal) to reduce/shrink the OS Managed Disk size for a Windows VM in Azure.
 
@@ -57,5 +57,15 @@ In this example, the Azure VM AAHW2 (_yeah I know you can see I've done a bad jo
 ![Existing Disk]({{ site.baseurl }}/assets/images/shrink-azure-vm-osdisk1.png)
 
 We can see that there is sufficient space on the C drive to **reduce** the Azure Managed disk size to **32Gb**:
-![Existing Disk]({{ site.baseurl }}/assets/images/shrink-azure-vm-osdisk2.png)
+![Existing Volumes]({{ site.baseurl }}/assets/images/shrink-azure-vm-osdisk2.png)
 
+### Shrink the OS Partition
+
+* Open PowerShell as Administrator
+* Run: `Get-Partition -DiskNumber 0` where `0` is the Disk number of the OS Disk:
+![Existing Volumes]({{ site.baseurl }}/assets/images/shrink-azure-vm-osdisk3.png)
+
+* We now have the PartitionNumber which is **"2"** – this is the OS Disk **"C"**
+
+* Work out what the new OS Volume size will be + the existing System Reserved partition.
+So if we set the OS partition to 31GB and add 500MB for the System Reserved partition we get 31.5Gb in total for Disk0. This is within the 32Gb Azure Disk size so will work in this scenario.
