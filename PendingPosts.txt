@@ -1,4 +1,4 @@
-Intune login script / AD Groups
+Shrink Azure VM OS Disk
 Deploying Office/Visio/Project interactively in Intune
 CI/CD Pipeline for WVD
 Dell BIOS passwords with Intune
