@@ -2,7 +2,7 @@
 layout: post
 title: Azure storage options for FSLogix profiles on Windows Virtual Desktop
 subtitle: The different types of storage options when using FSLogix and WVD in Azure
-date: 2019-08-18 20:39:00.000000000 +00:00
+date: 2019-08-17 20:39:00.000000000 +00:00
 type: post
 parent_id: '0'
 published: true

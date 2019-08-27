@@ -3,7 +3,7 @@ layout: post
 title: Shrink an Azure VMs OS Managed Disk using PowerShell.
 subtitle: Using PowerShell (and the Azure Portal) to reduce/shrink the OS Managed Disk size for a Windows VM in Azure.
 share-img: "assets/images/intune-win10-login-script1.png"
-date: 2019-08-04 20:48:00.000000000 +00:00
+date: 2019-08-27 20:48:00.000000000 +00:00
 type: post
 parent_id: '0'
 published: true
@@ -48,7 +48,6 @@ Many on-prem VMs are built from a VMWare template, often with an oversized OS dr
 ### Alternative Approach
 
 The technique used to the reduce the disk in this post is identical to that of the Microsoft post mentioned above, except that here **we use only PowerShell without relying on an opensource tool**. This process in this post is also **dynamic** in that it reads the footer from a new disk created in Azure, ensuring the **correct value is always written** and up to date.
-
 
 ## Shrink Disk
 
