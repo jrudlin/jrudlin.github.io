@@ -86,7 +86,6 @@ Here we have specified the PartitionNumber retrieved above and the new OS Disk p
 * Shutdown the VM from within the OS
 * Deallocate the VM from the Azure portal:
 ![Existing Volumes]({{ site.baseurl }}/assets/images/shrink-azure-vm-osdisk6.png)
-
 ![Existing Volumes]({{ site.baseurl }}/assets/images/shrink-azure-vm-osdisk7.png)
 
 * Wait until the VM becomes Stopped (deallocated):
@@ -95,5 +94,61 @@ Here we have specified the PartitionNumber retrieved above and the new OS Disk p
 
 ### Resize the Azure VM OS Managed Disk
 
-* Open PowerShell as Administrator and install the Az module:
-Install-Module Az
+* Open PowerShell as Administrator and install the Az module: ``Install-Module Az``
+
+* Take a copy of the [Shrink-AzDisk.ps1](https://github.com/jrudlin/Azure/blob/master/General/Shrink-AzDisk.ps1) script.
+
+* Go to the **Disks** blade on the VM and click on the **OS Disk**:
+![Existing Volumes]({{ site.baseurl }}/assets/images/shrink-azure-vm-osdisk9.png)
+
+* Go the **Properties** blade of the **disk** and copy the **Resource ID**:
+![Existing Volumes]({{ site.baseurl }}/assets/images/shrink-azure-vm-osdisk10.png)
+
+* Paste the **Resource ID** into the `$DiskID` variable in the script:
+```powershell
+# Variables
+$DiskID = "/subscriptions/203bdbf0-66pp-1111-aaaa-j822ce7a34j4/resourcegroups/rg-server1-prod-1/providers/Microsoft.Compute/disks/Server1-Server1"
+```
+
+* Change the `$VMName` variable to the VM name as it appears in Azure:
+```powershell
+$VMName = "AAHW2"
+```
+
+* Change the disk size if 32Gb is too small, you can go to the next size up which is 64Gb – bear in mind that the above steps would need to take 64Gb into account though (so shrinking the OS disk for example)
+```powershell
+$DiskSizeGB = 32
+```
+
+* Add the name of the Azure subscription. It can be retrieved by running the `Get-AzSubscription` cmdlet
+```powershell
+$AzSubscription = "Prod" 
+```
+
+* The variables section at the top of the script should look something like this now:
+```powershell
+# Variables
+$DiskID = "/subscriptions/203bdbf0-66pp-1111-aaaa-j822ce7a34j4/resourcegroups/rg-server1-prod-1/providers/Microsoft.Compute/disks/Server1-Server1"
+$VMName = "AAHW2"
+$DiskSizeGB = 32
+$AzSubscription = "Prod" 
+```
+
+* Save your updated PowerShell script.
+
+### The Script
+
+* You will need at least **VM Contributor** and **Storage Account Contributor** rights in Azure to run this script as it will:
+..* Create a temporary Storage Acccount
+..* Create a new
+
+* Now you can either run small chunks (recommended) by copy-pasting code from your script windows into your PowerShell shell, or you can run the script. It will prompt you to login with your Azure admin credentials.
+**Note** I haven't built any error handling or checking into this script, hence the above suggestion.
+
+### Extend the OS Partition
+
+* Now the Azure VM is back up and running with the new smaller OS Disk, you can go ahead and extend the OS volume to use all the remaining free space:
+![Existing Volumes]({{ site.baseurl }}/assets/images/shrink-azure-vm-osdisk11.png)
+![Existing Volumes]({{ site.baseurl }}/assets/images/shrink-azure-vm-osdisk12.png)
+![Existing Volumes]({{ site.baseurl }}/assets/images/shrink-azure-vm-osdisk13.png)
+![Existing Volumes]({{ site.baseurl }}/assets/images/shrink-azure-vm-osdisk14.png)
