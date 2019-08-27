@@ -68,9 +68,11 @@ We can see that there is sufficient space on the C drive to **reduce** the Azure
 * We now have the PartitionNumber which is **"2"** – this is the OS Disk **"C"**
 
 * Work out what the new OS Volume size will be **+** the existing System Reserved partition.
+  
   So if we set the OS partition to **31GB** and add **500MB** for the System Reserved partition we get **31.5Gb** in total for Disk0. This is within the **32Gb** Azure Disk size so will work in this scenario.
 
 *	In PowerShell run: `Get-Partition -DiskNumber 0 -PartitionNumber 2 | Resize-Partition -Size 31GB`
+  
   Here we have specified the PartitionNumber retrieved above and the new OS Disk partition Size that we want (based on the Azure disk size of **32Gb**)
 
 * You should end up with the below disk configuration:
@@ -78,5 +80,21 @@ We can see that there is sufficient space on the C drive to **reduce** the Azure
 
 * If you get the below error
 > The specified shrink size is too big and will cause the volume to be smaller than the minimum volume size
-  just run the PowerShell cmd a few more times until it succeeds:
+
+just run the PowerShell cmd a few more times until it succeeds:
 ![Existing Volumes]({{ site.baseurl }}/assets/images/shrink-azure-vm-osdisk5.png)
+
+* Shutdown the VM from within the OS
+* Deallocate the VM from the Azure portal:
+![Existing Volumes]({{ site.baseurl }}/assets/images/shrink-azure-vm-osdisk6.png)
+
+![Existing Volumes]({{ site.baseurl }}/assets/images/shrink-azure-vm-osdisk7.png)
+
+* Wait until the VM becomes Stopped (deallocated):
+![Existing Volumes]({{ site.baseurl }}/assets/images/shrink-azure-vm-osdisk8.png)
+
+
+### Resize the Azure VM OS Managed Disk
+
+* Open PowerShell as Administrator and install the Az module:
+Install-Module Az
