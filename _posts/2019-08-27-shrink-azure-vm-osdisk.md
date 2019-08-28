@@ -138,11 +138,18 @@ $AzSubscription = "Prod"
 
 ### The Script
 
-* You will need at least **VM Contributor** and **Storage Account Contributor** rights in Azure to run this script as it will:
+* You will need at least **VM Contributor** and **Storage Account Contributor** rights in Azure to run this script.
+* You will also need access to create Managed Disks. You can use `Microsoft.Compute/disks/*` to create a custom Azure Role if you like.
+* The Script will:
 ..* Create a temporary Storage Acccount
-..* Create a new
+..* Create a new temp disk in the new Storage Account to read the footer from
+..* Copy the Managed OS Disk into the temp Storage Account
+..* Change the footer (size) so the OS disk shrinks
+..* Convert the disk back to a Managed Disk
+..* Swap the VM's current OS disk with the new smaller OS Disk
+..* Tidy/Delete the temp storage account and the old managed disk
 
-* Now you can either run small chunks (recommended) by copy-pasting code from your script windows into your PowerShell shell, or you can run the script. It will prompt you to login with your Azure admin credentials.
+* Now you can either run small chunks (recommended) by copy-pasting code from your script windows into your PowerShell, or you can run the script. It will prompt you to login with your Azure admin credentials.
 **Note** I haven't built any error handling or checking into this script, hence the above suggestion.
 
 ### Extend the OS Partition
