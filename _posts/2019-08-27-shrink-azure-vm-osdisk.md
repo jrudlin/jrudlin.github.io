@@ -48,7 +48,9 @@ Many on-prem VMs are built from a VMWare template, often with an oversized OS dr
 ### Alternative Approach
 
 The technique used to the reduce the disk in this post is identical to that of the Microsoft post mentioned above, except that here **we use only PowerShell without relying on an opensource tool**.
+
 Another difference in my method is that it is **dynamic** - in that it reads the footer from a new disk created in Azure, ensuring the **correct value is always written** and up to date.
+
 Finally, I am using the [swap disk](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/os-disk-swap) method rather than creating a new VM from the new Managed Disk
 
 ## Shrink Disk
@@ -152,6 +154,7 @@ $AzSubscription = "Prod"
   * Tidy/Delete the temp storage account and the old managed disk
 
 * Now you can either run small chunks (recommended) by copy-pasting code from your script windows into your PowerShell, or you can run the script. It will prompt you to login with your Azure admin credentials.
+  
   **Note** I haven't built any error handling or checking into this script, hence the above suggestion.
 
 ### Extend the OS Partition
