@@ -47,7 +47,9 @@ Many on-prem VMs are built from a VMWare template, often with an oversized OS dr
 
 ### Alternative Approach
 
-The technique used to the reduce the disk in this post is identical to that of the Microsoft post mentioned above, except that here **we use only PowerShell without relying on an opensource tool**. This process in this post is also **dynamic** in that it reads the footer from a new disk created in Azure, ensuring the **correct value is always written** and up to date.
+The technique used to the reduce the disk in this post is identical to that of the Microsoft post mentioned above, except that here **we use only PowerShell without relying on an opensource tool**.
+Another difference in my method is that it is **dynamic** - in that it reads the footer from a new disk created in Azure, ensuring the **correct value is always written** and up to date.
+Finally, I am using the [swap disk](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/os-disk-swap) method rather than creating a new VM from the new Managed Disk
 
 ## Shrink Disk
 
@@ -72,7 +74,7 @@ We can see that there is sufficient space on the C drive to **reduce** the Azure
   So if we set the OS partition to **31GB** and add **500MB** for the System Reserved partition we get **31.5Gb** in total for Disk0. This is within the **32Gb** Azure Disk size so will work in this scenario.
 
 * In PowerShell run: `Get-Partition -DiskNumber 0 -PartitionNumber 2 | Resize-Partition -Size 31GB`
-Here we have specified the PartitionNumber retrieved above and the new OS Disk partition Size that we want (based on the Azure disk size of **32Gb**)
+  Here we have specified the PartitionNumber retrieved above and the new OS Disk partition Size that we want (based on the Azure disk size of **32Gb**)
 
 * You should end up with the below disk configuration:
 ![Existing Volumes]({{ site.baseurl }}/assets/images/shrink-azure-vm-osdisk4.png)
@@ -141,16 +143,16 @@ $AzSubscription = "Prod"
 * You will need at least **VM Contributor** and **Storage Account Contributor** rights in Azure to run this script.
 * You will also need access to create Managed Disks. You can use `Microsoft.Compute/disks/*` to create a custom Azure Role if you like.
 * The Script will:
-..* Create a temporary Storage Acccount
-..* Create a new temp disk in the new Storage Account to read the footer from
-..* Copy the Managed OS Disk into the temp Storage Account
-..* Change the footer (size) so the OS disk shrinks
-..* Convert the disk back to a Managed Disk
-..* Swap the VM's current OS disk with the new smaller OS Disk
-..* Tidy/Delete the temp storage account and the old managed disk
+  * Create a temporary Storage Acccount
+  * Create a new temp disk in the new Storage Account to read the footer from
+  * Copy the Managed OS Disk into the temp Storage Account
+  * Change the footer (size) so the OS disk shrinks
+  * Convert the disk back to a Managed Disk
+  * Swap the VM's current OS disk with the new smaller OS Disk
+  * Tidy/Delete the temp storage account and the old managed disk
 
 * Now you can either run small chunks (recommended) by copy-pasting code from your script windows into your PowerShell, or you can run the script. It will prompt you to login with your Azure admin credentials.
-**Note** I haven't built any error handling or checking into this script, hence the above suggestion.
+  **Note** I haven't built any error handling or checking into this script, hence the above suggestion.
 
 ### Extend the OS Partition
 
