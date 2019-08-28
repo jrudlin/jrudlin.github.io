@@ -2,7 +2,7 @@
 layout: post
 title: Shrink an Azure VMs OS Managed Disk using PowerShell.
 subtitle: Using PowerShell (and the Azure Portal) to reduce/shrink the OS Managed Disk size for a Windows VM in Azure.
-share-img: "assets/images/intune-win10-login-script1.png"
+share-img: "assets/images/shrink-azure-vm-osdisk1.png"
 date: 2019-08-27 20:48:00.000000000 +00:00
 type: post
 parent_id: '0'
