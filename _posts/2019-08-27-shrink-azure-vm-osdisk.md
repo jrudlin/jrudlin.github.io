@@ -33,6 +33,8 @@ author:
 
 Using PowerShell (and the Azure Portal) to reduce/shrink the OS Managed Disk size for a Windows VM in Azure.
 
+{:toc}
+
 ## Overview
 
 At present it is not supported to reduce/shrink the OS disk (managed or unmanaged) size of an Azure VM from the Azure Portal (say from 128Gb to 32Gb for example), using PowerShell or any other tools. A Microsoft [blog post](https://devblogs.microsoft.com/premier-developer/how-to-shrink-a-managed-disk/) covers this statement and also an alternative approach to this post.
@@ -155,7 +157,7 @@ $AzSubscription = "Prod"
 
 * Now you can either run small chunks (recommended) by copy-pasting code from your script windows into your PowerShell, or you can run the script. It will prompt you to login with your Azure admin credentials.
   
-  **Note** I haven't built any error handling or checking into this script, hence the above suggestion.
+  **Note:** I haven't built any error handling or checking into this script, hence the above suggestion.
 
 ### Extend the OS Partition
 
