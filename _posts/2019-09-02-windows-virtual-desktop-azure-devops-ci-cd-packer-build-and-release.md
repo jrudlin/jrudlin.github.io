@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Windows Virtual Desktop CD/CD image using Azure Devops and Packer
+title: Windows Virtual Desktop imaging using Azure Devops CI/CD, Packer and PowerShell
 subtitle: Using Azure Devops CI/CD Pipelines, PowerShell and Packer, create Builds and Releases for a scale-out Win10 1903 WVD deployment in Azure.
 share-img: "assets/images/wvd-azure-devops1.jpg"
 date: 2019-09-02 20:48:00.000000000 +00:00
