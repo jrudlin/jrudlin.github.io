@@ -33,6 +33,7 @@ author:
 
 Using PowerShell (and the Azure Portal) to reduce/shrink the OS Managed Disk size for a Windows VM in Azure.
 
+* TOC
 {:toc}
 
 ## Overview
