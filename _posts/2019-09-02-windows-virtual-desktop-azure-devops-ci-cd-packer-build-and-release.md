@@ -86,7 +86,7 @@ If you follow the rest of the post, we'll see how this template is built, what t
 
 * Access with **Basic** Access Level at least to an [Azure Devops](https://dev.azure.com) organisation and/or project. Stakeholder level doesn't allow Pipelines to be used!
 
-**Note:** There is also a preview feature to allow [Stakeholders access to pipelines](https://docs.microsoft.com/en-us/azure/devops/organizations/security/provide-stakeholder-pipeline-access?view=azure-devops) 
+   **Note:** There is also a preview feature to allow [Stakeholders access to pipelines](https://docs.microsoft.com/en-us/azure/devops/organizations/security/provide-stakeholder-pipeline-access?view=azure-devops) 
 
 * **Owner** access to an Azure Subscription so you can create Resource Groups, VMs, Key Vaults, Images and a Subscription level service principal
 * Windows Virtual Desktop **tenant owner** permissions
@@ -96,11 +96,11 @@ If you follow the rest of the post, we'll see how this template is built, what t
 
 ### Outline
 
-The Azure Devops Build Pipeline will be used to run Packer, which takes an Azure Marketplace Win10 1903 EVD image (with or without O365 ProPlus) and builds a VM from it. Once the VM is provisioned, Packer PowerShell Provisioner will connect to an Azure File Share and begin to install your business applications. Once the custom config/apps are finished, Packer will sysprep, shutdown and convert the VM to an Azure VM Image - following this, all the other resources are cleanly removed.
+The Azure Devops Build Pipeline will be used to run **Packer**, which takes an Azure Marketplace **Win10 1903 EVD image** (with or without O365 ProPlus) and builds a VM from it. Once the VM is provisioned, Packer **PowerShell Provisioner** will connect to an **Azure File Share** and begin to install your business applications. Once the custom config/apps are finished, Packer will sysprep, shutdown and convert the VM to an Azure VM Image - following this, all the other resources are cleanly removed.
 
 ### New Devops Project
 
-Start off by creating a new Project in Azure Devops:
+Start off by creating a new Project in [Azure Devops](https://dev.azure.com):
 
 ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops2.jpg)
 
@@ -116,7 +116,7 @@ I expect you'll want to use **Git** based version control, but it doesn't matter
 
 ### Repo
 
-You can Clone the repo into VSCode if you wish, I'm going to show the process using the Devops web portal.
+You can **Clone** the repo into **VSCode** if you wish. I'm going to show the process using the Devops web portal.
 
 #### Initialise Repo
 
@@ -172,7 +172,7 @@ We will need to edit the Packer template now, but the WVD ARM template should re
 
 ### Packer VM Build Service Principal
 
-Packer will need an Azure Service Principal in the Azure subscription where the WVD machines will be built. Packer creates a Resource Group, Key Vault, VM, Storage and networking during each Build - which it then deletes at the end, after the VM Image has been successfully created. My Service Principal has **Contributor** access at the Subscription level but you can of course allocate the individual roles instead.
+Packer will need an Azure **Service Principal** in the Azure subscription where the WVD machines will be built. Packer creates a Resource Group, Key Vault, VM, Storage and networking during each Build - which it then deletes at the end, after the VM Image has been successfully created. My Service Principal has **Contributor** access at the Subscription level but you can of course allocate the individual roles instead.
 
 [How to: Use the portal to create an Azure AD application and service principal that can access resources](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
 
@@ -218,7 +218,7 @@ Use these sections:
 
 #### WVD Domain Join Creds
 
-We will need the Active Directory user UPN and password of the account that access to join the Win10 WVD VMs to the Active Directory domain.
+We will need the Active Directory user UPN and password of the account that access to **join** the Win10 WVD VMs to the Active Directory domain.
 
 ### Key Vault
 
@@ -247,7 +247,7 @@ In your WVD project > Pipelines > Library, create a new Variable Group:
 
 * Enable the Azure key vault option.
 * Select your subscription from the drop-down menu.
-  * At first I didn't see my subscriptions. I need to grant the account I was using in Devops read access to the Azure subscriptions.
+  * At first I didn't see my subscriptions. I needed to grant the account I was using in Devops read access to the Azure subscriptions.
 * Don't authorize - as this will try and create a new Service Principal..
 * Click the drop-down next to Authorize and choose **Advanced options**.
 
@@ -297,7 +297,7 @@ The setup is almost identical to the above key vault connection in that you use 
 
 Not all the variables used need to be stored in an Azure Key Vault. It's simpler for variables that don't require encryption, to be stored in standard Devops Variables Groups.
 
-In your WVD project > Pipelines > Library, create a new Variable Group:
+In your WVD project > **Pipelines** > **Library**, create a new **Variable Group**:
 
 ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops30.jpg)
 
@@ -524,7 +524,7 @@ Lets have a look at some of these new builder properties. A lot of these are sel
 * `"virtual_network_subnet_name"` The subnet within the VNET that the temporary RG will be created in. Make sure it has an NSG that allows inbound WinRM 5986
 * `"vm_size": "Standard_B2S",` is only used during the creation of the VM image - it has no bearing on what spec the WVD machines will be when deployed from said image.
 
-At this stage we could actually run an Azure Packger build and it should sysprep and output an Image for us, but there are some further tweaks required first and we need at least a few applications installed in our Gold image from the Azure Files Share.
+At this stage we could actually run an Azure Packer build and it should sysprep and output an Image for us, but there are some further tweaks required first and we need at least a few applications installed in our Gold image from the Azure Files Share.
 
 #### Packer PowerShell Provisioner
 
@@ -622,7 +622,10 @@ In your **WVD** Devops project:
 
    Then add a **Variable Save** Task ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops49.jpg)
 1. Finally, add a **Publish Build Artifact** Task ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops50.jpg)
-1. Our Build Pipeline now looks like this, but needs some configuration before it's finished: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops51.jpg)
+1. Our Build Pipeline now looks like this, but needs some configuration before it's finished:
+
+   ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops51.jpg)
+
 1. Lets go through each task and perform the appropriate config. The **Packer Tool Installer** defaults will work for us: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops52.jpg)
 1. On the **Build immutable image** task:
    * The **Packer Template** will be **user provided**
