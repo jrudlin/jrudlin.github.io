@@ -636,26 +636,57 @@ In your **WVD** Devops project:
      ```json
      {"client_id":"$(DevopsVMProvisioningServicePrincipalAppID)","client_secret":"$(DevopsVMProvisioningServicePrincipalSecret)","AppInstallsStorageAccountName":"$(AppInstallsStorageAccountKey1)","AppInstallsStorageAccountKey1":"$(AppInstallsStorageAccountName)"}
      ```
-   *  **Output** variables. Enter "**BuildImage**" into the "**Image URL or Name**" box: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops56.jpg). This is reference to the exact image generated in this Build. This will be used by the Release to deploy the image in Azure to a WVD Host Pool.
+   *  **Output** variables. Enter "**BuildImage**" into the "**Image URL or Name**" box: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops56.jpg).
+   
+      This is reference to the exact image generated in this Build. This will be used by the Release to deploy the image in Azure to a WVD Host Pool.
 1. The **Copy files** task essentially just copies static data - the **WVD Arm Template** which is in the Repo. Copying these files into the built-in location that Devops uses allows us to reference these "**artifacts**" during the **Release Pipeline**.
 
    * Add `$(build.artifactstagingdirectory)` to the **Name**
-   * Select the ARM Template folder: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops57.jpg)
-   * Add `$(build.artifactstagingdirectory)` to the **Target folder** ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops58.jpg)
+   * Select the ARM Template folder:
+   
+     ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops57.jpg)
+   * Add `$(build.artifactstagingdirectory)` to the **Target folder**
+   
+     ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops58.jpg)
 1. The **Save Build Variables** is a community tool which **converts variables into artifacts**. Variables are lost between Pipelines so we need a way to store the **BuildImage**  name so that it can be **referenced by the Release Pipeline**.
 
-   * Add **BuildImage** to the **Prefixes** box - it will automatically change the Task name ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops60.jpg)
+   * Add **BuildImage** to the **Prefixes** box - it will automatically change the Task name
+   
+     ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops60.jpg)
 1. **Publish Artifact:** You don't have to change anything, but "drop" isn't helpful, so: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops61.jpg)
-1. Now the **Tasks** are complete, lets add the **Variables** ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops66.jpg)
-   * **Link** the **Azure Key Vault Variables** ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops67.jpg)
-   * **Link** the **Devops Variables** ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops68.jpg)
-   * The **Variables** now looks like this: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops69.jpg) You can use the drop down to view all the variables.
+1. Now the **Tasks** are complete, lets add the **Variables**
+
+   ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops66.jpg)
+   
+   * **Link** the **Azure Key Vault Variables**
+   
+     ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops67.jpg)
+   * **Link** the **Devops Variables**
+
+     ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops68.jpg)
+   * The **Variables** now looks like this:
+
+     ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops69.jpg)
+     
+     You can use those drop downs to view all the variables.
+
+
 1. **Options** allow us to configure the job timeout to infinite: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops70.jpg) **Note**: 60mins is the max time on a private repo so 0 won't make any different here, but it's best to change it now in case you have switch **Agent Pools** or project visibility.
 1. Once you have **saved**, the **Queue** option becomes available. Click on this to run the Build: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops62.jpg) ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops63.jpg)
 1. The **Hosted Agent** will start and begin to process the tasks: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops64.jpg) ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops65.jpg)
-1. Whilst the build is in progress: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops71.jpg) you should see the resources in the Azure portal: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops72.jpg)
+1. Whilst the build is in progress:
+
+   ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops71.jpg) 
+   
+   you should see the resources in the Azure portal:
+   
+   ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops72.jpg)
 1. Once the build is complete, a new image should exist in the `wvd_goldimage_rg` Resource Group: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops73.jpg) And you should get a confirmation email: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops74.jpg)
-1. In Devops, go to Pipelines > Builds and click on the successful build. In the top right is the **Artifacts** drop down where **Build Image** is selectable: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops90.jpg). You can expand the folder to see all the artifacts: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops91.jpg)
+1. In Devops, go to Pipelines > Builds and click on the successful build. In the top right is the **Artifacts** drop down where **Build Image** is selectable: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops90.jpg).
+
+   You can expand the folder to see all the artifacts:
+   
+   ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops91.jpg)
 
 ## Release Pipeline
 
@@ -677,7 +708,7 @@ Naturally, this assumes you have an existing **WVD environment** that can be **t
 1. Two additional options will appear. Choose the **Latest version** and then name your **Source alias**. Click **Add** ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops83.jpg)
 1. Enable the **Continuous deployment trigger** so that each new Build that finishes succesfully will automatically run the **Validate** Task: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops84.jpg)
 1. **Edit** the **Validate** task again ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops85.jpg)
-1. **Add** a : ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops86.jpg)
+1. **Add** a **Variable Load Task**: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops86.jpg)
 1. **Add** an **Azure Resource Group Deployment** Task: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops87.jpg)
 1. The **Variable Load Task** can be left as default. It will load the **BuildImage** variable using the json files generated in Build Pipeline ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops88.jpg)
 1. In the **Azure Resource Group Deployment** Task:
@@ -747,7 +778,7 @@ Naturally, this assumes you have an existing **WVD environment** that can be **t
 
    * Check the **status** of the ***Release**: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops107.jpg)
 
-   * The **Validation** stage has succeeeded: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops108.jpg)
+   * The **Validation** stage has succeeded: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops108.jpg)
 
 1. Now now that the ARM template has succeeded in validation, we can manually run the **Deploy** stage which will actually initate the Resource Group deployment. x number of Win10 Azure VMs will be created and added to your desired WVD Host Pool: ![WVDAzureDevops]({{ site.baseurl }}/assets/images/wvd-azure-devops109.jpg)
 
