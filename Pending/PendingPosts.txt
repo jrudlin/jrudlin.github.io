@@ -1,7 +1,6 @@
-CI/CD Pipeline for WVD
+Intune / Choco app upgrades with PSADT
 Deploying Office/Visio/Project interactively in Intune
 Dell BIOS passwords with Intune
 Always use latest ODT setup.exe when installing Office Visio/Project through Intune.
 Intune Compliance script
-Intune / Choco app upgrades with PSADT
 Managing external Guests with automation and Access Review
