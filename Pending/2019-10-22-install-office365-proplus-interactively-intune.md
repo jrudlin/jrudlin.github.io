@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 3rd party Win10 application patching with Intune, Chocolatey and PSADT
-subtitle: Keep third party apps updated/patched using the power of Chocolately combined with user interaction from the PowerShell App Deployment Toolkit, deployed through Intune.
+title: Interactive install of Office 365 ProPlus using Intune
+subtitle: Using Intune and the ServiceUI.exe from the MDT, deploy an interactive installation of Office 365 ProPlus/Visio/Project so that users can see progress, errors and close open Office apps.
 share-img: "assets/images/ChocoAppPatching5.jpg"
-date: 2019-09-14 20:48:00.000000000 +00:00
+date: 2019-10-22 20:48:00.000000000 +00:00
 type: post
 parent_id: '0'
 published: true
@@ -12,18 +12,17 @@ status: publish
 categories:
 - Windows 10
 - Intune
-- Chocolatey
-- PowerShell App Deployment Toolkit
+- Office 365
+- PowerShell
 tags:
-- Windows 10
+- Office365
+- Office 365 ProPlus
+- Visio
+- Project
 - Intune
-- Chocolatey
-- PowerShell App Deployment Toolkit
-- Scheduled Task
-- PSADT
-- Applications
-- Upgrades
-- Patching
+- PowerShell
+- ServiceUI
+- MDT
 author:
   login: jrudlingmailcom
   email: jrudlin@gmail.com
@@ -34,27 +33,14 @@ author:
 
 ![DevopsOverview]({{ site.baseurl }}/assets/images/ChocoAppPatching3.jpg)
 
-Keep third party apps updated/patched using the power of Chocolately combined with user interaction from the PowerShell App Deployment Toolkit, deployed through Intune.
+Using Azure Devops CI/CD Pipelines, PowerShell and Packer, create Builds and Releases for a scale-out Win10 1903 WVD deployment in Azure.
 
 * TOC
 {:toc}
 
 # Overview
 
-Third party application patching (Adobe Reader for example) with Intune standalone is no mean feat without ConfigMgr/SCCM Co-Management. Reporting (invetory) is still limited and there is no thrid party import catalog ability (CAB files) line in ConfigMgr/SCCM, so usually custom solutions are needed if embarking on a modern desktop implementation.
-
-In this short post, I wanted to show you how I kept applications (whether installed originally with Chocolatey or not) up to date with the [Chocolatey](https://chocolatey.org/) Nuget package manager.
-
-These are the components in use:
-* Intune - Win32 app deployment
-* Scheduled Task
-* PSADT
-* Chocolatey
-
-# Chocolatey
-
-You can use the free version for this, but using the Business edition is preferably, as you can take apps installed outside of Chocolatey back under the choco management and therefore patch them.
-
+Ok, it's difficult for me to explain what this post is about using just the title and subtitle so I'll try and do a better job here.
 
 With [Windows Virtual Desktop](https://docs.microsoft.com/en-gb/azure/virtual-desktop/overview) being close to GA now, I wanted to put a continuous build solution together for the **Windows 10 Azure VM Image** which will be used to build the **WVD solution** from. In English this means we will be building a traditional **Windows 10 gold image** with all our apps and static config etc. and then using this image to deploy Azure VMs from, forming the Windows Virtual Desktop Host Pools for RemoteApps.
 

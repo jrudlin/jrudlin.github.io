@@ -44,7 +44,9 @@ In order of preference, these are the Azure based storage options for FSLogix pr
 
  * Create an [Azure Premium File Share](https://docs.microsoft.com/en-us/azure/storage/files/storage-how-to-create-premium-fileshare)
  * Get the [cmdkey to access the file share](https://docs.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-windows)
- * Add the above storage credentials to the Windows Credential Manager as the SYSTEM account
+ * Add the above storage credentials to the Windows Credential Manager as the SYSTEM account:
+   * Run a startup script in Group Policy against the WVD VMs:
+     `cmdkey /add:<storageaccountname>.file.core.windows.net /user:<storageaccountname> /pass:<storagekey>`
  * Set the FSLogix Registry value `AccessNetworkAsComputerObject` to `1`
  * Set the FSLogix Registry value `VHDLocations` to the UNC path of the Azure File Share
 
