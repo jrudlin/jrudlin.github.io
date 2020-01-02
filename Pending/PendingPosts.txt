@@ -4,3 +4,4 @@ Dell BIOS passwords with Intune
 Always use latest ODT setup.exe when installing Office Visio/Project through Intune.
 Intune Compliance script
 Managing external Guests with automation and Access Review
+Lets Encrypt free ssl certificate for Azure VM with SQL Server, using CI/CD Azure DevOps Pipeline

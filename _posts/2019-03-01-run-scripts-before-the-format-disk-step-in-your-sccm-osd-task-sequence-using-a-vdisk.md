@@ -2,7 +2,7 @@
 layout: post
 title: Run scripts before the 'Format Disk' step in your SCCM OSD Task Sequence using
   a vdisk
-date: 2019-03-01 17:19:55.000000000 +00:00
+date: 2020-01-02 17:19:55.000000000 +00:00
 type: post
 parent_id: '0'
 published: true
@@ -38,6 +38,8 @@ author:
   last_name: ''
 permalink: "/2019/03/01/run-scripts-before-the-format-disk-step-in-your-sccm-osd-task-sequence-using-a-vdisk/"
 ---
+**Updated 02/01/2020** [Added details on the steps required for BIOS boot mode devices as the TSM Root drive does not get assigned automatically like it does with UEFI boot]
+
 You've got your SCCM OSD Task Sequence ready/working but you want to run some scripts in the WinPE phase before the Format Disk steps.
 
 This will generally work well if there is a formatted disk available as you can just reference your script in a package like you normally would, and the package content will be downloaded to the disk.
@@ -52,7 +54,7 @@ Well, look no further, the solution is herein detailed.
 
 One of the most commonly used solutions out there right now is to run scripts directly from a UNC path (make sure you authenticate first):
 
-<figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/sccm-run-scripts-from-unc.jpg" alt="" class="wp-image-348"><br>
+<figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/sccm-run-scripts-before-format-1.jpg" alt="" class="wp-image-348"><br>
 <figcaption>Running scripts from the network without package content download</figcaption>
 </figure>
 
@@ -97,6 +99,18 @@ diskpart.exe /s %temp%\diskpartvDisk.txt
 <figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/run-diskpart.jpg" alt="" class="wp-image-343"></figure>
 
 <figure class="wp-block-image"><img src="{{ site.baseurl }}/assets/images/run-diskpart2.jpg" alt="" class="wp-image-342"></figure>
+
+### BIOS Mode
+
+If you're booting your devices in BIOS mode as opposed to UEFI, then you'll need this extra step to ensure that the running Task Sequence identifies the newly formatted drive.
+
+Add a new group inside the existing **Temp Local Disk**  group and copy the conditions from the **Partition Disk 0 - BIOS** step:
+
+![Format2]({{ site.baseurl }}/assets/images/sccm-run-scripts-before-format-2.png)
+
+Inside this new group, add a **Set Task Sequence Variable** step and set the `SMSTSLocalDataDrive` variable to `C:\`:
+
+![Format3]({{ site.baseurl }}/assets/images/sccm-run-scripts-before-format-3.png)
 
 ### Use package content
 

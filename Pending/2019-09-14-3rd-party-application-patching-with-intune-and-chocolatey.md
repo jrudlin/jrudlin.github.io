@@ -41,19 +41,42 @@ Keep third party apps updated/patched using the power of Chocolately combined wi
 
 # Overview
 
-Third party application patching (Adobe Reader for example) with Intune standalone is no mean feat without ConfigMgr/SCCM Co-Management. Reporting (invetory) is still limited and there is no thrid party import catalog ability (CAB files) line in ConfigMgr/SCCM, so usually custom solutions are needed if embarking on a modern desktop implementation.
+Third party application patching (Adobe Reader for example) with Intune standalone is no mean feat without ConfigMgr Co-Management. Reporting (inventory) in Intune is still limited and there is no third party catalog import ability (CAB files) like in ConfigMgr, so usually custom solutions are needed if embarking on a modern desktop implementation.
 
-In this short post, I wanted to show you how I kept applications (whether installed originally with Chocolatey or not) up to date with the [Chocolatey](https://chocolatey.org/) Nuget package manager.
+In this short post, I wanted to show you how I kept applications updated and patched with the [Chocolatey](https://chocolatey.org/) Nuget package manager (Free version).
+> Note: If you use the Business edition (paid) or better, then you can also manage and update applications installed outside of Chocolatey - so ones that the IT folk with local admin have installed manually!
 
-These are the components in use:
+These are the core components in use in this solution:
 * Intune - Win32 app deployment
 * Scheduled Task
 * PSADT
-* Chocolatey
+* Chocolatey - Free license
 
 # Chocolatey
 
-You can use the free version for this, but using the Business edition is preferably, as you can take apps installed outside of Chocolatey back under the choco management and therefore patch them.
+You can use the free version for this, but using the Business edition is preferably, as you can take apps installed outside of Chocolatey back under the choco management and therefore patch them - this is a really great feature of Chocolatey in my opinion.
+
+## Scenario
+
+To set the scene, this is the environment the Chocolatey patching will work well in:
+
+* As we're using the free version of Chocolatey in this example, you will have already setup many apps to be installed through Chocolatey, publishing them as **available** in the Company Portal using Intune.
+* App are made **available** and use a Chocolatey PowerShell script to always install the latest version - this means the detection method (custom script detection) will still work, even if the apps are updated the deployment is set to **required**.
+* These apps will now be out of date as they are not automatically updating and/or the users don't have local admin rights if they are installed in the system context.
+
+## Intune app install scripts
+
+An example of PowerShell scripts I used to install apps using Chocoately, deployed through Intune.
+Note: These are not the scripts used for patching the existing apps:
+
+* [Install latest version of Adobe Reader DC (with auto-update disabled) from Chocolatey:](https://github.com/jrudlin/Intune/blob/master/Install-AdobeReaderDC-Choco.ps1)
+* [Uninstall Adobe Reader DC using Chocolatey:](https://github.com/jrudlin/Intune/blob/master/Uninstall-AdobeReaderDC-Choco.ps1)
+* [Intune custom detection method for Adobe Reader DC installed through Chocolatey](https://github.com/jrudlin/Intune/blob/master/Detection-Rule-AdobeReaderDC-Choco.ps1)
+
+# Getting Started
+
+So now you want to patch/update all of your apps using Chocolatey, through Intune.
+In this solution, we have one Azure AD Group for monthly updates (IT/Dev/Test machines), and another for quarterly updates (Rest of the business) - you can of course expand this to be more granular using more Scheduled Tasks.
 
 
 With [Windows Virtual Desktop](https://docs.microsoft.com/en-gb/azure/virtual-desktop/overview) being close to GA now, I wanted to put a continuous build solution together for the **Windows 10 Azure VM Image** which will be used to build the **WVD solution** from. In English this means we will be building a traditional **Windows 10 gold image** with all our apps and static config etc. and then using this image to deploy Azure VMs from, forming the Windows Virtual Desktop Host Pools for RemoteApps.
