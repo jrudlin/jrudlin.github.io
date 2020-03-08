@@ -191,10 +191,10 @@ If ($ChocoExe){
 
 There are a few moving parts to this so lets have an explanation of the remaining files (that can be found in the download link at the bottom of this post).
 
- * Install.cmd - calls the Deploy-Application.exe using the ServiceUI.exe (Part of the Microsoft Deployment Toolkit (MDT)). This should be in the same folder as the PSADT.
- * ServiceUI.exe - called by above Install.cmd
- * ChocoPackageUpdates-ScheduledTask.ps1 - creates a local scheduled task to run monthly or quaterly, and copies the PSADT folder contents locally. The task calls the Install.cmd when it's run.
- * Detection-Rule-Monthly.ps1 and Detection-Rule-Quarterly.ps1 - Don't deploy these to the endpoints as they are the scripts that I used for the detection method in Intune - they detect if the Scheduled Task exists.
+ * **Install.cmd** - calls the **Deploy-Application.exe** using the **ServiceUI.exe** (Part of the Microsoft Deployment Toolkit (MDT)). This should be in the same folder as the PSADT.
+ * **ServiceUI.exe** - called by above **Install.cmd**
+ * **ChocoPackageUpdates-ScheduledTask.ps1** - creates a local scheduled task to run monthly or quaterly, and copies the PSADT folder contents locally. The task calls the Install.cmd when it's run.
+ * **Detection-Rule-Monthly.ps1** and **Detection-Rule-Quarterly.ps1** - *Don't* deploy these to the endpoints as they are the scripts that I used for the detection method in Intune - they detect if the Scheduled Task exists.
 
 
 
@@ -215,6 +215,6 @@ And the quarterly servicing:
 powershell.exe ChocoPackageUpdates-ScheduledTask.ps1 -Release Quarterly
 ```
 
-## Scripts Download
+# Scripts Download
 
 All the files/scripts used are available for [download](https://github.com/jrudlin/Intune/tree/master/Choco%20App%20Patching) on my Github repo.
