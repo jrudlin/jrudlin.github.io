@@ -1,4 +1,4 @@
-Intune / Choco app upgrades with PSADT
+LogicApp - Blobs functions
 Deploying Office/Visio/Project interactively in Intune
 Dell BIOS passwords with Intune
 Always use latest ODT setup.exe when installing Office Visio/Project through Intune.
