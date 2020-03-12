@@ -50,7 +50,7 @@ Check the link to [EVOTEC's](https://twitter.com/evotecpl) blog: [easy-way-to-cr
 
 This slightly jerky gif shows a small development ConfigMgr hierarchy:
 
-![sccm-diagram-PSWriteHTML2](https://github.com/jrudlin/SCCM-Scripts/blob/master/Document%20Infra/PSWriteHTML.GIF)
+![sccm-diagram-PSWriteHTML2](https://raw.githubusercontent.com/jrudlin/SCCM-Scripts/master/Document%20Infra/PSWriteHTML.GIF)
 
 # Pre-reqs
 

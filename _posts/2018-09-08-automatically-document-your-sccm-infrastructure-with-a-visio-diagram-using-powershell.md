@@ -37,6 +37,9 @@ author:
   last_name: ''
 permalink: "/2018/09/08/automatically-document-your-sccm-infrastructure-with-a-visio-diagram-using-powershell/"
 ---
+
+[<span style="color:red">Update 2020/03/12:</span> There is now another method that does not require Visio. See post: [Document your ConfigMgr infrastructure using PowerShell module PSWriteHTML](https://jrudlin.github.io/2020-03-12-document-your-sccm-infrastructure-using-powershell-module-pswritehtml/)]
+
 Wow that's a long title. To summarise:  
 **PowerShell script = SCCM Visio diagram**
 
