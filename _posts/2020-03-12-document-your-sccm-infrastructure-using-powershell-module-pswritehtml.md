@@ -134,3 +134,4 @@ Run [SCCM Document Infrastructure with Interactive html output.ps1](https://gith
  If the script runs successfully, it should open the HTML ouput at the end:
 
 ![sccm-diagram-PSWriteHTML1]({{ site.baseurl }}/assets/images/sccm-diagram-PSWriteHTML.PNG)
+
