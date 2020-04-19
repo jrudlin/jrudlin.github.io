@@ -89,7 +89,7 @@ Logging will be into the users' %temp% folder: **Win10-Login-Script.log**
 Setup, or use an existing storage account to host the login script in blob storage. V2, LRS, Hot:
 ![CreatedOnDate]({{ site.baseurl }}/assets/images/intune-win10-login-script2.png)
 
-Create a new container in blob storage with public access level:
+Create a new container in the blob storage account, with anonymous blob access:
 ![CreatedOnDate]({{ site.baseurl }}/assets/images/intune-win10-login-script3.png)
 
 Upload the [login script](https://github.com/jrudlin/Intune/blob/master/Win10-Login-Script.ps1) and copy its URL
