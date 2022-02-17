@@ -31,6 +31,8 @@ author:
 
 ![Existing Disk]({{ site.baseurl }}/assets/images/shrink-azure-vm-osdisk1.png)
 
+[**Updated:2022/02/17** Now supports Trusted Launch VMs and Disks using the `-SecurityType "TrustedLaunch"` parameter.]
+
 Using PowerShell (and the Azure Portal) to reduce/shrink the OS Managed Disk size for a Windows VM in Azure.
 
 * TOC
